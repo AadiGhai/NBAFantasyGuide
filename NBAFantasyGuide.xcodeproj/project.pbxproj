@@ -7,18 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		085187CC2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */; };
+		085187D12A48C34F006DAEF6 /* playerdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 085187D02A48C34F006DAEF6 /* playerdata.json */; };
+		085187D32A48CF4A006DAEF6 /* NBATabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085187D22A48CF4A006DAEF6 /* NBATabView.swift */; };
+		085187D52A48F24C006DAEF6 /* MyTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085187D42A48F24C006DAEF6 /* MyTeamView.swift */; };
+		085187D72A48F2A3006DAEF6 /* BackgroundRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085187D62A48F2A3006DAEF6 /* BackgroundRectangle.swift */; };
+		085187DB2A48FDCF006DAEF6 /* PlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085187DA2A48FDCF006DAEF6 /* PlayersView.swift */; };
 		08A37ABB2A465C3B00CFF135 /* NBAFantasyGuideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A37ABA2A465C3B00CFF135 /* NBAFantasyGuideApp.swift */; };
 		08A37ABD2A465C3B00CFF135 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A37ABC2A465C3B00CFF135 /* ContentView.swift */; };
 		08A37ABF2A465C3D00CFF135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A37ABE2A465C3D00CFF135 /* Assets.xcassets */; };
 		08A37AC22A465C3D00CFF135 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A37AC12A465C3D00CFF135 /* Preview Assets.xcassets */; };
+		08A37AD02A465D9C00CFF135 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A37ACF2A465D9C00CFF135 /* Data.swift */; };
+		08A37AD62A466DD200CFF135 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A37AD52A466DD200CFF135 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		085187CD2A47BCA5006DAEF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		085187D02A48C34F006DAEF6 /* playerdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerdata.json; sourceTree = "<group>"; };
+		085187D22A48CF4A006DAEF6 /* NBATabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBATabView.swift; sourceTree = "<group>"; };
+		085187D42A48F24C006DAEF6 /* MyTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamView.swift; sourceTree = "<group>"; };
+		085187D62A48F2A3006DAEF6 /* BackgroundRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRectangle.swift; sourceTree = "<group>"; };
+		085187DA2A48FDCF006DAEF6 /* PlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersView.swift; sourceTree = "<group>"; };
 		08A37AB72A465C3B00CFF135 /* NBAFantasyGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBAFantasyGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A37ABA2A465C3B00CFF135 /* NBAFantasyGuideApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBAFantasyGuideApp.swift; sourceTree = "<group>"; };
 		08A37ABC2A465C3B00CFF135 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		08A37ABE2A465C3D00CFF135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08A37AC12A465C3D00CFF135 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		08A37ACF2A465D9C00CFF135 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		08A37AD52A466DD200CFF135 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		085187C82A47BBF6006DAEF6 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		08A37AAE2A465C3B00CFF135 = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +76,14 @@
 		08A37AB92A465C3B00CFF135 /* NBAFantasyGuide */ = {
 			isa = PBXGroup;
 			children = (
+				085187CD2A47BCA5006DAEF6 /* Info.plist */,
+				085187C82A47BBF6006DAEF6 /* Font */,
+				08A37ACC2A465C8100CFF135 /* Services */,
+				08A37ACB2A465C7800CFF135 /* Resources */,
+				08A37ACA2A465C6D00CFF135 /* ModelViews */,
+				08A37AC92A465C6100CFF135 /* Views */,
+				08A37AC82A465C5800CFF135 /* Models */,
 				08A37ABA2A465C3B00CFF135 /* NBAFantasyGuideApp.swift */,
-				08A37ABC2A465C3B00CFF135 /* ContentView.swift */,
 				08A37ABE2A465C3D00CFF135 /* Assets.xcassets */,
 				08A37AC02A465C3D00CFF135 /* Preview Content */,
 			);
@@ -65,6 +96,49 @@
 				08A37AC12A465C3D00CFF135 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		08A37AC82A465C5800CFF135 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				08A37ACF2A465D9C00CFF135 /* Data.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		08A37AC92A465C6100CFF135 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08A37ABC2A465C3B00CFF135 /* ContentView.swift */,
+				085187D62A48F2A3006DAEF6 /* BackgroundRectangle.swift */,
+				085187D42A48F24C006DAEF6 /* MyTeamView.swift */,
+				085187D22A48CF4A006DAEF6 /* NBATabView.swift */,
+				085187DA2A48FDCF006DAEF6 /* PlayersView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		08A37ACA2A465C6D00CFF135 /* ModelViews */ = {
+			isa = PBXGroup;
+			children = (
+				08A37AD52A466DD200CFF135 /* DataModel.swift */,
+			);
+			path = ModelViews;
+			sourceTree = "<group>";
+		};
+		08A37ACB2A465C7800CFF135 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				085187D02A48C34F006DAEF6 /* playerdata.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		08A37ACC2A465C8100CFF135 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +201,8 @@
 			files = (
 				08A37AC22A465C3D00CFF135 /* Preview Assets.xcassets in Resources */,
 				08A37ABF2A465C3D00CFF135 /* Assets.xcassets in Resources */,
+				085187D12A48C34F006DAEF6 /* playerdata.json in Resources */,
+				085187CC2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +213,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				085187D32A48CF4A006DAEF6 /* NBATabView.swift in Sources */,
+				08A37AD62A466DD200CFF135 /* DataModel.swift in Sources */,
 				08A37ABD2A465C3B00CFF135 /* ContentView.swift in Sources */,
 				08A37ABB2A465C3B00CFF135 /* NBAFantasyGuideApp.swift in Sources */,
+				08A37AD02A465D9C00CFF135 /* Data.swift in Sources */,
+				085187D52A48F24C006DAEF6 /* MyTeamView.swift in Sources */,
+				085187D72A48F2A3006DAEF6 /* BackgroundRectangle.swift in Sources */,
+				085187DB2A48FDCF006DAEF6 /* PlayersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +351,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"NBAFantasyGuide/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NBAFantasyGuide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -297,6 +380,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"NBAFantasyGuide/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NBAFantasyGuide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

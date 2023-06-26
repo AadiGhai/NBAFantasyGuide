@@ -11,7 +11,8 @@ import SwiftUI
 struct NBAFantasyGuideApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NBATabView()
+                .environmentObject(DataModel())
         }
     }
 }
