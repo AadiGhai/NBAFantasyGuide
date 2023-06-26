@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		083EFFFC2A4910BD00F8D7D6 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EFFFB2A4910BD00F8D7D6 /* DataService.swift */; };
 		085187CC2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */; };
 		085187D12A48C34F006DAEF6 /* playerdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 085187D02A48C34F006DAEF6 /* playerdata.json */; };
 		085187D32A48CF4A006DAEF6 /* NBATabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085187D22A48CF4A006DAEF6 /* NBATabView.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		083EFFFB2A4910BD00F8D7D6 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		085187CD2A47BCA5006DAEF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		085187D02A48C34F006DAEF6 /* playerdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerdata.json; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				085187D02A48C34F006DAEF6 /* playerdata.json */,
+				083EFFFB2A4910BD00F8D7D6 /* DataService.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				083EFFFC2A4910BD00F8D7D6 /* DataService.swift in Sources */,
 				085187D32A48CF4A006DAEF6 /* NBATabView.swift in Sources */,
 				08A37AD62A466DD200CFF135 /* DataModel.swift in Sources */,
 				08A37ABD2A465C3B00CFF135 /* ContentView.swift in Sources */,

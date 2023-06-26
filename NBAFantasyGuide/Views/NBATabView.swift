@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NBATabView: View {
-   // var myTeam:[Player]
     var body: some View {
         TabView {
             ContentView()
