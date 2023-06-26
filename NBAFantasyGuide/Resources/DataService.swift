@@ -28,10 +28,9 @@ class DataService{
             let decoder = JSONDecoder()
             
             do{
-                let playerData = try decoder.decode([Player].self, from: data)
-                for p in playerData{
-                    var pl = p
-                    pl.id = UUID()
+                var playerData = try decoder.decode([Player].self, from: data)
+                for index in 0..<playerData.count {
+                    playerData[index].id = UUID()
                 }
                 return playerData
             }

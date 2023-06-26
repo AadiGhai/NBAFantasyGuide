@@ -15,35 +15,27 @@ struct PlayersView: View {
             ZStack{
                 BackgroundRectangle(opacity: 0.7)
                     .ignoresSafeArea()
-                VStack {
+                VStack(alignment: .center) {
                     //MARK: labels
                     HStack(spacing: 20.0){
                         Text("Rank")
+                            .frame(width: 60)
+
                         Text("Name")
-                            .padding(.horizontal)
-                        Text("Team")
-                        Text("POS")
-                        Text("Stat")
-                        Text("+")
-                        Text("-")
+                            .padding(.horizontal, 50.0)
+                            .frame(width: 195)
+                        
+                        Text("Fantasy Points")
+                            .padding(.trailing, 40.0)
+                            .frame(width: 110)
+                            
+
                     }
                     .padding(.top, 10.0)
-                    .font(.custom("NotoSansKannada-SemiBold", size: 20))
-                    ScrollView{
-                        ForEach(model.players) { player in
-                            HStack(spacing: 30.0){
-                                Text(String(player.rk))
-                                Text(player.name)
-                                Text(player.team)
-                                Text(player.pos)
-                                Text(String(player.pts))
-                            }
-                            .padding(.trailing, 40.0)
-                            
-                           
-                                
-                        }
-                    }
+                    .frame(alignment: .center)
+                    .font(.custom("NotoSansKannada-SemiBold", size: 18))
+                    
+                    PlayerList()
                 
                 }
                 .navigationTitle("Players")

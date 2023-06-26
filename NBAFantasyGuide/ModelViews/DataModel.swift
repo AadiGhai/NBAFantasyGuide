@@ -8,6 +8,7 @@
 import Foundation
 class DataModel:ObservableObject{
     @Published var players = [Player]()
+    @Published var myPlayers = [Player]()
     init(){
         //create an instance of data service and get the data
         self.players = DataService.getLocalData()

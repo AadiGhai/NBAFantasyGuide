@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct MyTeamView: View {
+    @EnvironmentObject var model:DataModel
     var body: some View {
      NavigationView {
                 ZStack{
                     BackgroundRectangle(opacity: 0.7)
                         .ignoresSafeArea()
-                    VStack{
-                        
-                    }
+                    PlayerList(stat: model.myPlayers)
             }
                 .navigationTitle("My Team")                           .font(.custom("NotoSansKannada-Bold", size: 40))
 
@@ -27,5 +26,6 @@ struct MyTeamView: View {
 struct MyTeamView_Previews: PreviewProvider {
     static var previews: some View {
         MyTeamView()
+            .environmentObject(DataModel())
     }
 }

@@ -9,9 +9,10 @@ import SwiftUI
 
 struct NBATabView: View {
     @EnvironmentObject var model:DataModel
+    @State var selectedIndex = 1
     var body: some View {
-        TabView {
-            ContentView()
+        TabView(selection: $selectedIndex) {
+            HomeView()
                 .tabItem {
                     VStack{
                         Image(systemName: "house")
@@ -19,16 +20,19 @@ struct NBATabView: View {
 
                     }
                 }
+                .tag(1)
             PlayersView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Players")
                 }
-            Text("Search bar")
+                .tag(2)
+            SearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
+                .tag(3)
         }
         .foregroundColor(.black)
         .font(.custom("NotoSansKannada-Bold", size: 2))
