@@ -11,10 +11,13 @@ struct ContentView: View {
  @EnvironmentObject var model: DataModel
     var body: some View {
         ZStack{
-            //MARK: my team card
+      
+
             BackgroundRectangle(opacity: 0.7)
                 .ignoresSafeArea()
             VStack(spacing: 40.0){
+                //MARK: my team card
+                
                 ZStack{
                     BackgroundRectangle(opacity: 0.3)
                         .frame(width: 350, height: 400)

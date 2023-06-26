@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NBATabView: View {
+    @EnvironmentObject var model:DataModel
     var body: some View {
         TabView {
             ContentView()
@@ -38,5 +39,6 @@ struct NBATabView: View {
 struct TabView_Previews: PreviewProvider {
     static var previews: some View {
         NBATabView()
+            .environmentObject(DataModel())
     }
 }
