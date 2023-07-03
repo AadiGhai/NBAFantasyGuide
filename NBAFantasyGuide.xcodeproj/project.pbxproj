@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		083E00022A4A3CDB00F8D7D6 /* PlayerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E00012A4A3CDB00F8D7D6 /* PlayerList.swift */; };
+		083E00042A51288100F8D7D6 /* MyTeamCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E00032A51288100F8D7D6 /* MyTeamCalculations.swift */; };
 		083EFFFC2A4910BD00F8D7D6 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EFFFB2A4910BD00F8D7D6 /* DataService.swift */; };
 		083EFFFE2A49F05900F8D7D6 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EFFFD2A49F05900F8D7D6 /* SearchView.swift */; };
 		085187CC2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		083E00012A4A3CDB00F8D7D6 /* PlayerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerList.swift; sourceTree = "<group>"; };
+		083E00032A51288100F8D7D6 /* MyTeamCalculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamCalculations.swift; sourceTree = "<group>"; };
 		083EFFFB2A4910BD00F8D7D6 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		083EFFFD2A49F05900F8D7D6 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		08A37ACC2A465C8100CFF135 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				083E00032A51288100F8D7D6 /* MyTeamCalculations.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				08A37AD62A466DD200CFF135 /* DataModel.swift in Sources */,
 				08A37ABD2A465C3B00CFF135 /* HomeView.swift in Sources */,
 				083E00022A4A3CDB00F8D7D6 /* PlayerList.swift in Sources */,
+				083E00042A51288100F8D7D6 /* MyTeamCalculations.swift in Sources */,
 				08A37ABB2A465C3B00CFF135 /* NBAFantasyGuideApp.swift in Sources */,
 				08A37AD02A465D9C00CFF135 /* Data.swift in Sources */,
 				085187D52A48F24C006DAEF6 /* MyTeamView.swift in Sources */,

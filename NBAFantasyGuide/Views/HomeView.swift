@@ -38,13 +38,12 @@ struct HomeView: View {
                                 Text("Team Averages (from 2022-2023 Season): ")
                                     .padding(.bottom)
                                 
-                                Text("Points: ")
-                                Text("Rebounds: ")
-                                Text("Assists: ")
-                                Text("Steals: ")
-                                Text("Blocks: ")
-                                Text("Turnovers: ")
-                                Text("Fantasy Points: ")
+                                Text("Points: \(MyTeamCalulations.totalPoints(model.myPlayers))")
+                                Text("Rebounds: \(MyTeamCalulations.totalRebounds(model.myPlayers))")
+                                Text("Assists: \(MyTeamCalulations.totalAssists(model.myPlayers))")
+                                Text("Steals: \(MyTeamCalulations.totalSteals(model.myPlayers))")
+                                Text("Blocks: \(MyTeamCalulations.totalBlocks(model.myPlayers))")
+                                Text("Turnovers: \(MyTeamCalulations.totalTurnovers(model.myPlayers))")
                                 
                                 
                             }

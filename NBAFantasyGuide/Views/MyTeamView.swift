@@ -14,7 +14,7 @@ struct MyTeamView: View {
                 ZStack{
                     BackgroundRectangle(opacity: 0.7)
                         .ignoresSafeArea()
-                    PlayerList(stat: model.myPlayers)
+                    PlayerList(stat: model.myPlayers, remove: true, add: false)
             }
                 .navigationTitle("My Team")                           .font(.custom("NotoSansKannada-Bold", size: 40))
 
