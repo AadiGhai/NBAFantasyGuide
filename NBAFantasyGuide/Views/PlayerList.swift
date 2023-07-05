@@ -26,20 +26,22 @@ struct PlayerList: View {
         ScrollView{
             ForEach(players!) { player in
                 HStack(alignment: .center, spacing: 5.0){
-                    Text(String(player.rk))
+                    
+                    Text(String(model.num))
                         .frame(width: 60, alignment: .center)
                         .padding()
-                        
                     Text(player.name)
                         .frame(width: 195)
 
                     Text(String(player.pts))
                         .padding(.trailing)
                         .frame(width: 60)
+                    
                     if add{
                         Button("+") {
                             model.myPlayers.append(player)
                         }
+                        .foregroundColor(.black)
                     }
                     if remove{
                         Button("-"){
@@ -49,6 +51,8 @@ struct PlayerList: View {
                             }
                             
                         }
+                        .foregroundColor(.black)
+
                     }
              
                 }

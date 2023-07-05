@@ -50,6 +50,14 @@ class MyTeamCalulations {
         }
         return String(format: "%.2f", sum)
     }
+    static func fantasyPoints(_ players:[Player]) ->String {
+        var sum = 0.0
+        for player in players {
+            sum += player.pts + (1.2)*(player.trb) + (1.5)*(player.ast) + (3)*(player.stl) + (3)*(player.blk) + (-1)*(player.tov)
+        }
+        return String(format: "%.2f", sum)
+    }
+
 }
 
 

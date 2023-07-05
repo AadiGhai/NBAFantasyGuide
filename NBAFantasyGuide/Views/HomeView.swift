@@ -44,6 +44,8 @@ struct HomeView: View {
                                 Text("Steals: \(MyTeamCalulations.totalSteals(model.myPlayers))")
                                 Text("Blocks: \(MyTeamCalulations.totalBlocks(model.myPlayers))")
                                 Text("Turnovers: \(MyTeamCalulations.totalTurnovers(model.myPlayers))")
+                                Text("Fantasy Points: \(MyTeamCalulations.fantasyPoints(model.myPlayers))")
+
                                 
                                 
                             }

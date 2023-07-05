@@ -9,8 +9,10 @@ import SwiftUI
 
 struct PlayersView: View {
     @EnvironmentObject var model:DataModel
-    @State var selection = ""
-    let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers"]
+    @State var selectionTeam = "All"
+    @State var selectionStat = "Points"
+    @State var selectionPos = "All"
+    
     var body: some View {
      
         NavigationView {
@@ -18,13 +20,27 @@ struct PlayersView: View {
                 BackgroundRectangle(opacity: 0.7)
                     .ignoresSafeArea()
                 VStack(alignment: .center) {
-                 
-                    /*Picker("Statistic", selection: $selection) {
-                        ForEach(statistic, id: \.self) {
-                            Text($0)
+                    HStack(spacing: 30.0){
+                        Picker("Position", selection: $selectionPos) {
+                            ForEach(model.position, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        Picker("Team", selection: $selectionTeam) {
+                            ForEach(model.team, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        Picker("Statistic", selection: $selectionStat) {
+                            ForEach(model.statistic, id: \.self) {
+                                Text($0)
+                            }
                         }
                     }
-                    .pickerStyle(.menu)*/
+                    .pickerStyle(.menu)
+                    .accentColor(.black)
+                 
+                 
                     //MARK: labels
                     HStack(spacing: 20.0){
                         Text("Rank")
@@ -34,7 +50,7 @@ struct PlayersView: View {
                             .padding(.horizontal, 50.0)
                             .frame(width: 195)
                         
-                        Text("Fantasy Points")
+                        Text(selectionStat)
                             .padding(.trailing, 40.0)
                             .frame(width: 110)
                             
@@ -44,7 +60,7 @@ struct PlayersView: View {
                     .frame(alignment: .center)
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
                     
-                    PlayerList(remove: false, add: true)
+                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), remove: false, add: true)
                 
                 }
                 .navigationTitle("Players")
