@@ -62,7 +62,7 @@ struct PlayersView: View {
                  
                  
                     //MARK: labels
-                    HStack(spacing: 20.0){
+                    HStack(spacing: 0){
                         Text("Rank")
                             .frame(width: 60)
 
@@ -77,7 +77,8 @@ struct PlayersView: View {
 
                     }
                     .padding(.top, 10.0)
-                    .frame(alignment: .center)
+                    .padding(.trailing, 65)
+                    .frame(width: 10)
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
                     
                     PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), remove: false, add: true, statShown: true, selectedStat: selectionStat, isMyTeamPlayer: false, isHidden: true)
