@@ -21,21 +21,61 @@ struct PlayerList: View {
     var stat:[Player]?
     var remove:Bool
     var add:Bool
+    var statShown:Bool
+    var selectedStat:String?
     var body: some View {
         let players = stat != nil ? stat:model.players
         ScrollView{
             ForEach(players!) { player in
+
                 HStack(alignment: .center, spacing: 5.0){
                     
                     Text(String(model.num))
                         .frame(width: 60, alignment: .center)
                         .padding()
-                    Text(player.name)
-                        .frame(width: 195)
+                    
+                    NavigationLink {
+                        PlayerDetailView(player: player)
+                    } label: {
+                        Text(player.name)
+                            .frame(width: 195)
+                    }
+                   
+                    
+                    if statShown {
+                        if selectedStat == "Points" {
+                            Text(String(player.pts))
+                                .padding(.trailing)
+                                .frame(width: 60)
+                        }
+                        if selectedStat == "Rebounds" {
+                            Text(String(player.trb))
+                                .padding(.trailing)
+                                .frame(width: 60)
+                        }
+                        if selectedStat == "Assists" {
+                            Text(String(player.ast))
+                                .padding(.trailing)
+                                .frame(width: 60)
+                        }
+                        if selectedStat == "Steals" {
+                            Text(String(player.stl))
+                                .padding(.trailing)
+                                .frame(width: 60)
+                        }
+                        if selectedStat == "Blocks" {
+                            Text(String(player.blk))
+                                .padding(.trailing)
+                                .frame(width: 60)
+                        }
+                        if selectedStat == "Turnovers" {
+                            Text(String(player.tov))
+                                .padding(.trailing)
+                                .frame(width: 60)
+                        }
 
-                    Text(String(player.pts))
-                        .padding(.trailing)
-                        .frame(width: 60)
+                    }
+
                     
                     if add{
                         Button("+") {
@@ -61,9 +101,7 @@ struct PlayerList: View {
                 .padding(.trailing, 40.0)
                 .frame(alignment:.center)
 
-                Line()
-                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
-                    .frame(height: 1)
+
                     
             }
         }
@@ -73,7 +111,7 @@ struct PlayerList: View {
 
 struct PlayerList_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerList(remove: true, add: true)
+        PlayerList(remove: true, add: true, statShown: true, selectedStat: "Points")
             .environmentObject(DataModel())
     }
 }

@@ -10,6 +10,7 @@ class DataModel:ObservableObject{
     @Published var players = [Player]()
     @Published var myPlayers = [Player]()
     @Published var num = 1
+    @Published var tabSelectedIndex = 1
     let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers"]
     let position = ["All", "PG", "SG", "SF", "PF", "C"]
     let team = ["All", "ATL", "BKN", "BOS", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
@@ -66,5 +67,8 @@ class DataModel:ObservableObject{
     }
      func increment () {
         num += 1
+    }
+    func changeSelection (_ num:Int) {
+        tabSelectedIndex = num
     }
 }

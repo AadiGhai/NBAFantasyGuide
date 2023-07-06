@@ -9,15 +9,13 @@ import SwiftUI
 
 struct NBATabView: View {
     @EnvironmentObject var model:DataModel
-    @State var selectedIndex = 1
     var body: some View {
-        TabView(selection: $selectedIndex) {
+        TabView(selection: $model.tabSelectedIndex) {
             HomeView()
                 .tabItem {
                     VStack{
                         Image(systemName: "house")
                         Text("Home")
-
                     }
                 }
                 .tag(1)
@@ -38,6 +36,7 @@ struct NBATabView: View {
         .font(.custom("NotoSansKannada-Bold", size: 2))
 
     }
+
 }
 
 struct TabView_Previews: PreviewProvider {
