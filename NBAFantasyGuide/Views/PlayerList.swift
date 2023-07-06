@@ -23,6 +23,7 @@ struct PlayerList: View {
     var add:Bool
     var statShown:Bool
     var selectedStat:String?
+    var isMyTeamPlayer:Bool
     var body: some View {
         let players = stat != nil ? stat:model.players
         ScrollView{
@@ -35,7 +36,12 @@ struct PlayerList: View {
                         .padding()
                     
                     NavigationLink {
-                        PlayerDetailView(player: player)
+                        if isMyTeamPlayer{
+                            PlayerDetailView(player: player, isMyPlayer:true)
+                        }
+                        else {
+                            PlayerDetailView(player: player, isMyPlayer:false)
+                        }
                     } label: {
                         Text(player.name)
                             .frame(width: 195)
@@ -80,6 +86,9 @@ struct PlayerList: View {
                     if add{
                         Button("+") {
                             model.myPlayers.append(player)
+                            model.players.removeAll { object in
+                                object.id == player.id
+                            }
                         }
                         .foregroundColor(.black)
                     }
@@ -89,6 +98,7 @@ struct PlayerList: View {
                             model.myPlayers.removeAll { object in
                                 object.id == player.id
                             }
+                            model.players.append(player)
                             
                         }
                         .foregroundColor(.black)
@@ -111,7 +121,7 @@ struct PlayerList: View {
 
 struct PlayerList_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerList(remove: true, add: true, statShown: true, selectedStat: "Points")
+        PlayerList(remove: true, add: true, statShown: true, selectedStat: "Points", isMyTeamPlayer: true)
             .environmentObject(DataModel())
     }
 }

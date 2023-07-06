@@ -60,7 +60,7 @@ struct PlayersView: View {
                     .frame(alignment: .center)
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
                     
-                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), remove: false, add: true, statShown: true, selectedStat: selectionStat)
+                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), remove: false, add: true, statShown: true, selectedStat: selectionStat, isMyTeamPlayer: false)
                 
                 }
                 .navigationTitle("Players")

@@ -10,6 +10,7 @@ import SwiftUI
 struct PlayerDetailView: View {
     @EnvironmentObject var model:DataModel
     var player:Player
+    var isMyPlayer:Bool
     var body: some View {
         NavigationView {
             ZStack{
@@ -76,11 +77,28 @@ struct PlayerDetailView: View {
             }
             .navigationTitle(player.name)
             .toolbar {
-                Button("+") {
-                    model.myPlayers.append(player)
+                if !isMyPlayer {
+                    Button("+") {
+                        model.myPlayers.append(player)
+                        model.players.removeAll { object in
+                            object.id == player.id
+                        }
+                    }
+                    .foregroundColor(.black)
+                    .font(.custom("NotoSansKannada-Plain", size: 50))
                 }
-                .foregroundColor(.black)
-                .font(.custom("NotoSansKannada-Plain", size: 50))
+                else {
+                    Button("-"){
+                        
+                        model.myPlayers.removeAll { object in
+                            object.id == player.id
+                        }
+                        model.players.append(player)
+                        
+                    }
+                    .foregroundColor(.black)
+                    .font(.custom("NotoSansKannada-Plain", size: 50))
+                }
                 
             }
         }
@@ -92,7 +110,7 @@ struct PlayerDetailView_Previews: PreviewProvider {
     @EnvironmentObject var model:DataModel
 
     static var previews: some View {
-        PlayerDetailView(player: Player(rk: 1, name: "Lebron James", pos: "PG", age: 30, team: "LAL", g: 30, gs: 30, mp: 40, fg: 60, fga: 80, fgp: 55.5, thp: 37, thpa: 39, thpp: 72, twp: 47, twpa: 73, twpp: 23, efgp: 23, ft: 34, fta: 45, ftp: 67, orb: 43, drb: 65, trb: 34, ast: 54, stl: 34, blk: 76, tov: 46, pf: 66, pts: 99))
+        PlayerDetailView(player: Player(rk: 1, name: "Lebron James", pos: "PG", age: 30, team: "LAL", g: 30, gs: 30, mp: 40, fg: 60, fga: 80, fgp: 55.5, thp: 37, thpa: 39, thpp: 72, twp: 47, twpa: 73, twpp: 23, efgp: 23, ft: 34, fta: 45, ftp: 67, orb: 43, drb: 65, trb: 34, ast: 54, stl: 34, blk: 76, tov: 46, pf: 66, pts: 99), isMyPlayer: true)
             .environmentObject(DataModel())
     }
 }
