@@ -20,7 +20,7 @@ struct PlayersView: View {
                 BackgroundRectangle(opacity: 0.7)
                     .ignoresSafeArea()
                 VStack(alignment: .center) {
-                    HStack(spacing: 30.0){
+                    HStack(spacing: 10.0){
                         Picker("Position", selection: $selectionPos) {
                             ForEach(model.position, id: \.self) {
                                 Text($0)
@@ -36,9 +36,29 @@ struct PlayersView: View {
                                 Text($0)
                             }
                         }
+                        if model.hiddenPlayers.count > 0 {
+                            Button {
+                                for player in model.hiddenPlayers {
+                                    model.players.append(player)
+                                }
+                                model.hiddenPlayers.removeAll()
+                            } label: {
+                                ZStack{
+                                    BackgroundRectangle(opacity: 0.7)
+                                        .frame(width: 120, height: 40, alignment: .center)
+                                        .cornerRadius(20)
+                                    Text("Add Hidden")
+                                        .bold()
+                                }
+                            }
+                            .padding(.leading, 10)
+                        }
+
                     }
                     .pickerStyle(.menu)
                     .accentColor(.black)
+                    .font(.custom("NotoSansKannada-SemiBold", size: 18))
+                    .frame(width: 1000)
                  
                  
                     //MARK: labels
@@ -60,7 +80,7 @@ struct PlayersView: View {
                     .frame(alignment: .center)
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
                     
-                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), remove: false, add: true, statShown: true, selectedStat: selectionStat, isMyTeamPlayer: false)
+                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), remove: false, add: true, statShown: true, selectedStat: selectionStat, isMyTeamPlayer: false, isHidden: true)
                 
                 }
                 .navigationTitle("Players")

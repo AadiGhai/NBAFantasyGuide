@@ -9,6 +9,7 @@ import Foundation
 class DataModel:ObservableObject{
     @Published var players = [Player]()
     @Published var myPlayers = [Player]()
+    @Published var hiddenPlayers = [Player]()
     @Published var num = 1
     @Published var tabSelectedIndex = 1
     let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers"]

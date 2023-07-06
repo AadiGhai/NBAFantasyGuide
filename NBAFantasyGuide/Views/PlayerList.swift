@@ -24,92 +24,112 @@ struct PlayerList: View {
     var statShown:Bool
     var selectedStat:String?
     var isMyTeamPlayer:Bool
+    var isHidden:Bool
     var body: some View {
         let players = stat != nil ? stat:model.players
         ScrollView{
             ForEach(players!) { player in
-
-                HStack(alignment: .center, spacing: 5.0){
-                    
-                    Text(String(model.num))
-                        .frame(width: 60, alignment: .center)
-                        .padding()
-                    
-                    NavigationLink {
-                        if isMyTeamPlayer{
-                            PlayerDetailView(player: player, isMyPlayer:true)
-                        }
-                        else {
-                            PlayerDetailView(player: player, isMyPlayer:false)
-                        }
-                    } label: {
-                        Text(player.name)
-                            .frame(width: 195)
-                    }
-                   
-                    
-                    if statShown {
-                        if selectedStat == "Points" {
-                            Text(String(player.pts))
-                                .padding(.trailing)
-                                .frame(width: 60)
-                        }
-                        if selectedStat == "Rebounds" {
-                            Text(String(player.trb))
-                                .padding(.trailing)
-                                .frame(width: 60)
-                        }
-                        if selectedStat == "Assists" {
-                            Text(String(player.ast))
-                                .padding(.trailing)
-                                .frame(width: 60)
-                        }
-                        if selectedStat == "Steals" {
-                            Text(String(player.stl))
-                                .padding(.trailing)
-                                .frame(width: 60)
-                        }
-                        if selectedStat == "Blocks" {
-                            Text(String(player.blk))
-                                .padding(.trailing)
-                                .frame(width: 60)
-                        }
-                        if selectedStat == "Turnovers" {
-                            Text(String(player.tov))
-                                .padding(.trailing)
-                                .frame(width: 60)
-                        }
-
-                    }
-
-                    
-                    if add{
-                        Button("+") {
-                            model.myPlayers.append(player)
-                            model.players.removeAll { object in
-                                object.id == player.id
+                ZStack {
+                    BackgroundRectangle(opacity: 0.7)
+                        .frame(width: 420, height: 40, alignment: .center)
+                        .cornerRadius(20)
+                    HStack(alignment: .center, spacing: 5.0){
+                        
+                        Text(String(model.num))
+                            .frame(width: 35, alignment: .center)
+                            .padding()
+                        
+                        NavigationLink {
+                            if isMyTeamPlayer{
+                                PlayerDetailView(player: player, isMyPlayer:true)
                             }
-                        }
-                        .foregroundColor(.black)
-                    }
-                    if remove{
-                        Button("-"){
-                            
-                            model.myPlayers.removeAll { object in
-                                object.id == player.id
+                            else {
+                                PlayerDetailView(player: player, isMyPlayer:false)
                             }
-                            model.players.append(player)
-                            
+                        } label: {
+                            Text(player.name)
+                                .frame(width: 195)
                         }
-                        .foregroundColor(.black)
+                       
+                        
+                        if statShown {
+                            if selectedStat == "Points" {
+                                Text(String(player.pts))
+                                    .padding(.trailing)
+                                    .frame(width: 60)
+                            }
+                            if selectedStat == "Rebounds" {
+                                Text(String(player.trb))
+                                    .padding(.trailing)
+                                    .frame(width: 60)
+                            }
+                            if selectedStat == "Assists" {
+                                Text(String(player.ast))
+                                    .padding(.trailing)
+                                    .frame(width: 60)
+                            }
+                            if selectedStat == "Steals" {
+                                Text(String(player.stl))
+                                    .padding(.trailing)
+                                    .frame(width: 60)
+                            }
+                            if selectedStat == "Blocks" {
+                                Text(String(player.blk))
+                                    .padding(.trailing)
+                                    .frame(width: 60)
+                            }
+                            if selectedStat == "Turnovers" {
+                                Text(String(player.tov))
+                                    .padding(.trailing)
+                                    .frame(width: 60)
+                            }
 
+                        }
+
+                        
+                        if add{
+                            Button("+") {
+                                model.myPlayers.append(player)
+                                model.players.removeAll { object in
+                                    object.id == player.id
+                                }
+                            }
+                            .foregroundColor(.black)
+                            .frame(width: 10)
+                        }
+                        if remove{
+                            Button("-"){
+                                
+                                model.myPlayers.removeAll { object in
+                                    object.id == player.id
+                                }
+                                model.players.append(player)
+                                
+                            }
+                            .foregroundColor(.black)
+
+                        }
+                        if isHidden {
+                            Button("Hide"){
+                                
+                                model.players.removeAll { object in
+                                    object.id == player.id
+                                }
+                                model.hiddenPlayers.append(player)
+                                
+                            }
+                            .padding(.leading)
+                            .foregroundColor(.black)
+                            .frame(width: 60)
+                        }
+                 
                     }
-             
+                    .font(.custom("NotoSansKannada-SemiBold", size: 18))
+
+                    .padding(.trailing, 40.0)
+                    .frame(alignment:.center)
                 }
-                .font(.custom("NotoSansKannada-SemiBold", size: 18))
-
-                .padding(.trailing, 40.0)
-                .frame(alignment:.center)
+            
 
 
                     
@@ -121,7 +141,7 @@ struct PlayerList: View {
 
 struct PlayerList_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerList(remove: true, add: true, statShown: true, selectedStat: "Points", isMyTeamPlayer: true)
+        PlayerList(remove: false, add: true, statShown: true, selectedStat: "Points", isMyTeamPlayer: true, isHidden: true)
             .environmentObject(DataModel())
     }
 }
