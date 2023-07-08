@@ -26,11 +26,13 @@ struct PlayersView: View {
                                 Text($0)
                             }
                         }
+                        .frame(width: 70)
                         Picker("Team", selection: $selectionTeam) {
                             ForEach(model.team, id: \.self) {
                                 Text($0)
                             }
                         }
+                        .frame(width: 80)
                         Picker("Statistic", selection: $selectionStat) {
                             ForEach(model.statistic, id: \.self) {
                                 Text($0)
@@ -64,6 +66,7 @@ struct PlayersView: View {
                     //MARK: labels
                     HStack(spacing: 0){
                         Text("Rank")
+                            .padding(.leading)
                             .frame(width: 60)
 
                         Text("Name")
@@ -72,13 +75,12 @@ struct PlayersView: View {
                         
                         Text(selectionStat)
                             .padding(.trailing, 40.0)
-                            .frame(width: 110)
+                            .frame(width: 130)
                             
 
                     }
                     .padding(.top, 10.0)
                     .padding(.trailing, 65)
-                    .frame(width: 10)
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
                     
                     PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), remove: false, add: true, statShown: true, selectedStat: selectionStat, isMyTeamPlayer: false, isHidden: true)

@@ -8,28 +8,44 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State var input = ""
+    @EnvironmentObject var model:DataModel
+    @State private var searchText = ""
     var body: some View {
+        Text("Hello World")
         NavigationView {
-            ZStack{
-                BackgroundRectangle(opacity: 0.7)
-                    .ignoresSafeArea()
-                VStack(alignment: .leading){
-                    TextField("Type here", text: $input)
-                        .textFieldStyle(.roundedBorder)
-                    Spacer()
-                }
-                .padding(.horizontal)
+                ZStack {
+                    BackgroundRectangle(opacity: 0.7)
+                        .ignoresSafeArea()
+                    ScrollView {
+                        PlayerList(stat: searchResults, remove: false, add: false, statShown: false, isMyTeamPlayer: false, isHidden: false)
+                       
+                    }
+                    .navigationTitle("Search")
+                    .toolbar {
+                        
+                    }
                 
-            }
-            .navigationTitle("Search")
-        }
+                }
+                .searchable(text: $searchText)
+            
 
+        }
+        
+    }
+    var searchResults: [Player] {
+        if searchText.isEmpty {
+            return model.players
+        } else {
+            return model.players.filter { $0.name.contains(searchText) }
+        }
+      
     }
 }
+
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView()
+            .environmentObject(DataModel())
     }
 }

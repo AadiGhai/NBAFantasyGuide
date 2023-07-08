@@ -55,7 +55,6 @@ struct PlayerDetailView: View {
                             Divider()
                             Text("Totals from the 2022-2023 Season:")
                                 .bold()
-                            Divider()
                             Text("Games Played: \(String(player.g))")
                             Text("Games Started: \(String(player.gs))")
 
@@ -77,7 +76,10 @@ struct PlayerDetailView: View {
             }
             .navigationTitle(player.name)
             .toolbar {
-                if !isMyPlayer {
+                if !model.myPlayers.contains(where: { myPlayer in
+                    myPlayer.id == player.id
+                })
+                {
                     Button("+") {
                         model.myPlayers.append(player)
                         model.players.removeAll { object in
