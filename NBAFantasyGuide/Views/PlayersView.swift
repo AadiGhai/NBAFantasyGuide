@@ -65,17 +65,17 @@ struct PlayersView: View {
                  
                     //MARK: labels
                     HStack(spacing: 0){
-                        Text("Rank")
-                            .padding(.leading)
-                            .frame(width: 60)
+                        Text("Rk")
+                            .padding(.leading, 27.0)
+                            .frame(width: 50)
 
                         Text("Name")
-                            .padding(.horizontal, 50.0)
+                            .padding(.trailing, 100.0)
                             .frame(width: 195)
                         
                         Text(selectionStat)
-                            .padding(.trailing, 40.0)
-                            .frame(width: 130)
+                            .padding(.trailing, 60.0)
+                            .frame(width: 150)
                             
 
                     }

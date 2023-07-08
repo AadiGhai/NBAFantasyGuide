@@ -35,12 +35,11 @@ struct PlayerList: View {
                         Text(String(model.num))
                             .frame(width: 35, alignment: .center)
                             .padding()
-                        
                         NavigationLink {
                             PlayerDetailView(player: player)
                         } label: {
                             Text(player.name)
-                                .frame(width: 195)
+                                .frame(width: 195, alignment: .leading)
                         }
                         
                         
@@ -122,7 +121,6 @@ struct PlayerList: View {
                     .padding(.trailing, 40.0)
                     .frame(alignment:.center)
                 }
-                
                 
                 
                 

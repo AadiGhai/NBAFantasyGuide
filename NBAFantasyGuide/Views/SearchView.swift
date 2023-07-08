@@ -12,23 +12,21 @@ struct SearchView: View {
     @State private var searchText = ""
     var body: some View {
         NavigationView {
-                ZStack {
-                    BackgroundRectangle(opacity: 0.7)
-                        .ignoresSafeArea()
-                    ScrollView {
-                        PlayerList(stat: searchResults, statShown: false, isHidden: false)
-                       
-                    }
-                    .navigationTitle("Search")
-                    .toolbar {
-                        
-                    }
-                
+            ZStack {
+                BackgroundRectangle(opacity: 0.7)
+                    .ignoresSafeArea()
+                ScrollView {
+                    PlayerList(stat: searchResults, statShown: false, isHidden: false)
+                    
                 }
-                .searchable(text: $searchText, prompt: "Search For Any Player")                    .font(.custom("NotoSansKannada-SemiBold", size: 18))
-
-
-
+                .navigationTitle("Search")
+                
+            }
+            .searchable(text: $searchText, prompt: "Search For Any Player")
+                .font(.custom("NotoSansKannada-SemiBold", size: 18))
+            
+            
+            
         }
         
     }
@@ -38,7 +36,7 @@ struct SearchView: View {
         } else {
             return model.allPlayers.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
-      
+        
     }
 }
 
