@@ -83,7 +83,7 @@ struct PlayersView: View {
                     .padding(.trailing, 65)
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
                     
-                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), remove: false, add: true, statShown: true, selectedStat: selectionStat, isMyTeamPlayer: false, isHidden: true)
+                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), statShown: true, selectedStat: selectionStat, isHidden: true)
                 
                 }
                 .navigationTitle("Players")

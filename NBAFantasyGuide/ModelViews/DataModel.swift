@@ -10,6 +10,7 @@ class DataModel:ObservableObject{
     @Published var players = [Player]()
     @Published var myPlayers = [Player]()
     @Published var hiddenPlayers = [Player]()
+    @Published var allPlayers = [Player]()
     @Published var num = 1
     @Published var tabSelectedIndex = 1
     let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers"]
@@ -18,6 +19,7 @@ class DataModel:ObservableObject{
     init(){
         //create an instance of data service and get the data
         self.players = DataService.getLocalData()
+        self.allPlayers = DataService.getLocalData()
         
     }
     func sort (_ pos:String, _ tm:String, _ stat:String)->[Player] {

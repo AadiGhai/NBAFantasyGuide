@@ -11,13 +11,12 @@ struct SearchView: View {
     @EnvironmentObject var model:DataModel
     @State private var searchText = ""
     var body: some View {
-        Text("Hello World")
         NavigationView {
                 ZStack {
                     BackgroundRectangle(opacity: 0.7)
                         .ignoresSafeArea()
                     ScrollView {
-                        PlayerList(stat: searchResults, remove: false, add: false, statShown: false, isMyTeamPlayer: false, isHidden: false)
+                        PlayerList(stat: searchResults, statShown: false, isHidden: false)
                        
                     }
                     .navigationTitle("Search")
@@ -26,17 +25,18 @@ struct SearchView: View {
                     }
                 
                 }
-                .searchable(text: $searchText)
-            
+                .searchable(text: $searchText, prompt: "Search For Any Player")                    .font(.custom("NotoSansKannada-SemiBold", size: 18))
+
+
 
         }
         
     }
     var searchResults: [Player] {
         if searchText.isEmpty {
-            return model.players
+            return model.allPlayers
         } else {
-            return model.players.filter { $0.name.contains(searchText) }
+            return model.allPlayers.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
       
     }

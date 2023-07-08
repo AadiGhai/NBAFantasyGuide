@@ -19,11 +19,8 @@ struct Line: Shape {
 struct PlayerList: View {
     @EnvironmentObject var model:DataModel
     var stat:[Player]?
-    var remove:Bool
-    var add:Bool
     var statShown:Bool
     var selectedStat:String?
-    var isMyTeamPlayer:Bool
     var isHidden:Bool
     var body: some View {
         let players = stat != nil ? stat:model.players
@@ -40,17 +37,12 @@ struct PlayerList: View {
                             .padding()
                         
                         NavigationLink {
-                            if isMyTeamPlayer{
-                                PlayerDetailView(player: player, isMyPlayer:true)
-                            }
-                            else {
-                                PlayerDetailView(player: player, isMyPlayer:false)
-                            }
+                            PlayerDetailView(player: player)
                         } label: {
                             Text(player.name)
                                 .frame(width: 195)
                         }
-                       
+                        
                         
                         if statShown {
                             if selectedStat == "Points" {
@@ -83,37 +75,38 @@ struct PlayerList: View {
                                     .padding(.trailing)
                                     .frame(width: 60)
                             }
-
+                            
                         }
-
                         
-                        if add{
+                        
+                        
+                        if (!model.myPlayers.contains(where: { myPlayer in
+                            myPlayer.rk == player.rk
+                        }))
+                        {
                             Button("+") {
                                 model.myPlayers.append(player)
-                                model.players.removeAll { object in
-                                    object.id == player.id
-                                }
                             }
                             .foregroundColor(.black)
-                            .frame(width: 10)
+                            .frame(width: 20)
                         }
-                        if remove{
+                        
+                        else {
                             Button("-"){
                                 
                                 model.myPlayers.removeAll { object in
-                                    object.id == player.id
+                                    object.rk == player.rk
                                 }
-                                model.players.append(player)
-                                
                             }
                             .foregroundColor(.black)
-
+                            .frame(width: 20)
+                            
                         }
                         if isHidden {
                             Button("Hide"){
                                 
                                 model.players.removeAll { object in
-                                    object.id == player.id
+                                    object.rk == player.rk
                                 }
                                 model.hiddenPlayers.append(player)
                                 
@@ -122,26 +115,26 @@ struct PlayerList: View {
                             .foregroundColor(.black)
                             .frame(width: 60)
                         }
-                 
+                        
                     }
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
-
+                    
                     .padding(.trailing, 40.0)
                     .frame(alignment:.center)
                 }
-            
-
-
-                    
+                
+                
+                
+                
             }
         }
-
+        
     }
 }
 
 struct PlayerList_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerList(remove: false, add: true, statShown: true, selectedStat: "Points", isMyTeamPlayer: true, isHidden: true)
+        PlayerList(statShown: true, selectedStat: "Points", isHidden: true)
             .environmentObject(DataModel())
     }
 }

@@ -10,7 +10,6 @@ import SwiftUI
 struct PlayerDetailView: View {
     @EnvironmentObject var model:DataModel
     var player:Player
-    var isMyPlayer:Bool
     var body: some View {
         NavigationView {
             ZStack{
@@ -45,7 +44,7 @@ struct PlayerDetailView: View {
                             Text("Free Throws Percentage: \(String(player.ftp))")
                             Text("Offensive Rebounds: \(String(player.orb))")
                             Text("Defensive Rebounds: \(String(player.drb))")
-
+                            
                         }
                         Group{
                             Text("Steals: \(String(player.stl))")
@@ -57,46 +56,40 @@ struct PlayerDetailView: View {
                                 .bold()
                             Text("Games Played: \(String(player.g))")
                             Text("Games Started: \(String(player.gs))")
-
+                            
                         }
                         
-                      
-
-
+                        
+                        
+                        
                     }
                     .padding([.top, .leading])
                     .font(.custom("NotoSansKannada-Plain", size: 20))
-
+                    
                     
                 }
-              
-
+                
+                
                 
                 
             }
             .navigationTitle(player.name)
             .toolbar {
                 if !model.myPlayers.contains(where: { myPlayer in
-                    myPlayer.id == player.id
+                    myPlayer.rk == player.rk
                 })
                 {
                     Button("+") {
                         model.myPlayers.append(player)
-                        model.players.removeAll { object in
-                            object.id == player.id
-                        }
                     }
                     .foregroundColor(.black)
                     .font(.custom("NotoSansKannada-Plain", size: 50))
                 }
                 else {
                     Button("-"){
-                        
                         model.myPlayers.removeAll { object in
-                            object.id == player.id
+                            object.rk == player.rk
                         }
-                        model.players.append(player)
-                        
                     }
                     .foregroundColor(.black)
                     .font(.custom("NotoSansKannada-Plain", size: 50))
@@ -104,15 +97,15 @@ struct PlayerDetailView: View {
                 
             }
         }
-
+        
     }
 }
 
 struct PlayerDetailView_Previews: PreviewProvider {
     @EnvironmentObject var model:DataModel
-
+    
     static var previews: some View {
-        PlayerDetailView(player: Player(rk: 1, name: "Lebron James", pos: "PG", age: 30, team: "LAL", g: 30, gs: 30, mp: 40, fg: 60, fga: 80, fgp: 55.5, thp: 37, thpa: 39, thpp: 72, twp: 47, twpa: 73, twpp: 23, efgp: 23, ft: 34, fta: 45, ftp: 67, orb: 43, drb: 65, trb: 34, ast: 54, stl: 34, blk: 76, tov: 46, pf: 66, pts: 99), isMyPlayer: true)
+        PlayerDetailView(player: Player(rk: 1, name: "Lebron James", pos: "PG", age: 30, team: "LAL", g: 30, gs: 30, mp: 40, fg: 60, fga: 80, fgp: 55.5, thp: 37, thpa: 39, thpp: 72, twp: 47, twpa: 73, twpp: 23, efgp: 23, ft: 34, fta: 45, ftp: 67, orb: 43, drb: 65, trb: 34, ast: 54, stl: 34, blk: 76, tov: 46, pf: 66, pts: 99))
             .environmentObject(DataModel())
     }
 }
