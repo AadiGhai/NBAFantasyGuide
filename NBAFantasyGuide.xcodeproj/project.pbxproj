@@ -12,6 +12,11 @@
 		083E00082A5636C800F8D7D6 /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E00072A5636C800F8D7D6 /* PlayerDetailView.swift */; };
 		083EFFFC2A4910BD00F8D7D6 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EFFFB2A4910BD00F8D7D6 /* DataService.swift */; };
 		083EFFFE2A49F05900F8D7D6 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EFFFD2A49F05900F8D7D6 /* SearchView.swift */; };
+		084AA30D2A61FEA200184690 /* Player Data Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 084AA30B2A61FEA200184690 /* Player Data Model.xcdatamodeld */; };
+		084AA3102A6202A100184690 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AA30E2A6202A100184690 /* Player+CoreDataClass.swift */; };
+		084AA3112A6202A100184690 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AA30F2A6202A100184690 /* Player+CoreDataProperties.swift */; };
+		084AA3132A62057800184690 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AA3122A62057800184690 /* Persistence.swift */; };
+		084AA3152A620D4500184690 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AA3142A620D4500184690 /* Constants.swift */; };
 		085187CC2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */; };
 		085187D12A48C34F006DAEF6 /* playerdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 085187D02A48C34F006DAEF6 /* playerdata.json */; };
 		085187D32A48CF4A006DAEF6 /* NBATabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085187D22A48CF4A006DAEF6 /* NBATabView.swift */; };
@@ -32,6 +37,11 @@
 		083E00072A5636C800F8D7D6 /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
 		083EFFFB2A4910BD00F8D7D6 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		083EFFFD2A49F05900F8D7D6 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		084AA30C2A61FEA200184690 /* Player Data Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Player Data Model.xcdatamodel"; sourceTree = "<group>"; };
+		084AA30E2A6202A100184690 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		084AA30F2A6202A100184690 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		084AA3122A62057800184690 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		084AA3142A620D4500184690 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		085187CD2A47BCA5006DAEF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		085187D02A48C34F006DAEF6 /* playerdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerdata.json; sourceTree = "<group>"; };
@@ -86,6 +96,7 @@
 		08A37AB92A465C3B00CFF135 /* NBAFantasyGuide */ = {
 			isa = PBXGroup;
 			children = (
+				08A37ABA2A465C3B00CFF135 /* NBAFantasyGuideApp.swift */,
 				085187CD2A47BCA5006DAEF6 /* Info.plist */,
 				085187C82A47BBF6006DAEF6 /* Font */,
 				08A37ACC2A465C8100CFF135 /* Services */,
@@ -93,7 +104,6 @@
 				08A37ACA2A465C6D00CFF135 /* ModelViews */,
 				08A37AC92A465C6100CFF135 /* Views */,
 				08A37AC82A465C5800CFF135 /* Models */,
-				08A37ABA2A465C3B00CFF135 /* NBAFantasyGuideApp.swift */,
 				08A37ABE2A465C3D00CFF135 /* Assets.xcassets */,
 				08A37AC02A465C3D00CFF135 /* Preview Content */,
 			);
@@ -142,8 +152,12 @@
 		08A37ACB2A465C7800CFF135 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				084AA30E2A6202A100184690 /* Player+CoreDataClass.swift */,
+				084AA30F2A6202A100184690 /* Player+CoreDataProperties.swift */,
+				084AA3122A62057800184690 /* Persistence.swift */,
 				085187D02A48C34F006DAEF6 /* playerdata.json */,
 				083EFFFB2A4910BD00F8D7D6 /* DataService.swift */,
+				084AA30B2A61FEA200184690 /* Player Data Model.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -152,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				083E00032A51288100F8D7D6 /* MyTeamCalculations.swift */,
+				084AA3142A620D4500184690 /* Constants.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -230,17 +245,22 @@
 			files = (
 				083EFFFE2A49F05900F8D7D6 /* SearchView.swift in Sources */,
 				083EFFFC2A4910BD00F8D7D6 /* DataService.swift in Sources */,
+				084AA3132A62057800184690 /* Persistence.swift in Sources */,
+				084AA3112A6202A100184690 /* Player+CoreDataProperties.swift in Sources */,
 				083E00082A5636C800F8D7D6 /* PlayerDetailView.swift in Sources */,
 				085187D32A48CF4A006DAEF6 /* NBATabView.swift in Sources */,
 				08A37AD62A466DD200CFF135 /* DataModel.swift in Sources */,
 				08A37ABD2A465C3B00CFF135 /* HomeView.swift in Sources */,
+				084AA3102A6202A100184690 /* Player+CoreDataClass.swift in Sources */,
 				083E00022A4A3CDB00F8D7D6 /* PlayerList.swift in Sources */,
 				083E00042A51288100F8D7D6 /* MyTeamCalculations.swift in Sources */,
 				08A37ABB2A465C3B00CFF135 /* NBAFantasyGuideApp.swift in Sources */,
 				08A37AD02A465D9C00CFF135 /* Data.swift in Sources */,
+				084AA30D2A61FEA200184690 /* Player Data Model.xcdatamodeld in Sources */,
 				085187D52A48F24C006DAEF6 /* MyTeamView.swift in Sources */,
 				085187D72A48F2A3006DAEF6 /* BackgroundRectangle.swift in Sources */,
 				085187DB2A48FDCF006DAEF6 /* PlayersView.swift in Sources */,
+				084AA3152A620D4500184690 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +461,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		084AA30B2A61FEA200184690 /* Player Data Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				084AA30C2A61FEA200184690 /* Player Data Model.xcdatamodel */,
+			);
+			currentVersion = 084AA30C2A61FEA200184690 /* Player Data Model.xcdatamodel */;
+			path = "Player Data Model.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 08A37AAF2A465C3B00CFF135 /* Project object */;
 }

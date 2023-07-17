@@ -12,7 +12,6 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ZStack{
-                
                 BackgroundRectangle(opacity: 0.7)
                     .ignoresSafeArea()
                 VStack(spacing: 40.0){

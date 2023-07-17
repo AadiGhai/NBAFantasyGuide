@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
-
+import CoreData
 @main
 struct NBAFantasyGuideApp: App {
+    let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
             NBATabView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(DataModel())
         }
     }

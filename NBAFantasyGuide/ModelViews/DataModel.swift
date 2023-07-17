@@ -7,7 +7,8 @@
 
 import Foundation
 class DataModel:ObservableObject{
-    @Published var players = [Player]()
+    let managedObjectContext = PersistenceController.shared.container.viewContext
+    @Published var players: [Player]
     @Published var myPlayers = [Player]()
     @Published var hiddenPlayers = [Player]()
     @Published var allPlayers = [Player]()
@@ -15,12 +16,81 @@ class DataModel:ObservableObject{
     @Published var tabSelectedIndex = 1
     let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers"]
     let position = ["All", "PG", "SG", "SF", "PF", "C"]
-    let team = ["All", "ATL", "BKN", "BOS", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
+    let team = ["All", "ATL", "BRK", "BOS", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHO", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
     init(){
         //create an instance of data service and get the data
-        self.players = DataService.getLocalData()
-        self.allPlayers = DataService.getLocalData()
+        players = [Player]()
+        checkLoadedData()
+        allPlayers = players
+
+    }
+    
+    func checkLoadedData() {
+        let status = UserDefaults.standard.bool(forKey: Constants.isDataPreloaded)
+        if status == false {
+            preloadLocalData()
+        }
+        else {
+            fetchData()
+        }
+    }
+    func preloadLocalData() {
+        let localPlayers = DataService.getLocalData()
+        for p in localPlayers {
+           let player =  Player(context: managedObjectContext)
+            player.id = UUID()
+            player.age = p.age
+            player.ast = p.ast
+            player.blk = p.blk
+            player.drb = p.drb
+            player.efgp = p.efgp
+            player.fg = p.fg
+            player.fga = p.fga
+            player.fgp = p.fgp
+            player.ft = p.ft
+            player.fta = p.fta
+            player.ftp = p.ftp
+            player.mp = p.mp
+            player.orb = p.orb
+            player.pf = p.pf
+            player.pts = p.pts
+            player.stl = p.stl
+            player.thp = p.thp
+            player.thpa = p.thpa
+            player.thpp = p.thpp
+            player.tov = p.tov
+            player.trb = p.trb
+            player.twp = p.twp
+            player.twpa = p.twpa
+            player.twpp = p.twpp
+            player.g = p.g
+            player.gs = p.gs
+            player.name = p.name
+            player.pos = p.pos
+            player.rk = p.rk
+            player.team = p.team
+            players.append(player)
+}
+
+        do {
+            try managedObjectContext.save()
+            UserDefaults.standard.setValue(true, forKey: Constants.isDataPreloaded)
+
+        }
+        catch {
+            
+        }
+            
         
+        
+    }
+    func fetchData() {
+        do {
+            players = try managedObjectContext.fetch(Player.fetchRequest())
+        } catch {
+            print("Failed to fetch player data from Core Data: \(error)")
+        }
+
     }
     func sort (_ pos:String, _ tm:String, _ stat:String)->[Player] {
         var modifiedPlayers = players

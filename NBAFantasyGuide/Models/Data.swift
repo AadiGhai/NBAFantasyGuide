@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Player: Decodable, Identifiable {
+struct PlayerJSON: Decodable, Identifiable {
     var id:UUID?
     var rk:Int
     var name:String

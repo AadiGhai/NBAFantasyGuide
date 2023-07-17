@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NBATabView: View {
     @EnvironmentObject var model:DataModel
+    let gradient = LinearGradient(colors: [.blue, .purple], startPoint: .leading, endPoint: .trailing)
     var body: some View {
         TabView(selection: $model.tabSelectedIndex) {
             HomeView()
@@ -34,7 +35,15 @@ struct NBATabView: View {
         }
         .foregroundColor(.black)
         .font(.custom("NotoSansKannada-Bold", size: 2))
-
+        .onAppear {
+                   let appearance = UITabBarAppearance()
+                   appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+                   appearance.backgroundColor = UIColor(Color.blue.opacity(0.0))
+                   // Use this appearance when scrolling behind the TabView:
+                   UITabBar.appearance().standardAppearance = appearance
+                   // Use this appearance when scrolled all the way up:
+                   UITabBar.appearance().scrollEdgeAppearance = appearance
+               }
     }
 
 }

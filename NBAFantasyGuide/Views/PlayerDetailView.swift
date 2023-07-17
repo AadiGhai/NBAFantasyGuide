@@ -101,11 +101,3 @@ struct PlayerDetailView: View {
     }
 }
 
-struct PlayerDetailView_Previews: PreviewProvider {
-    @EnvironmentObject var model:DataModel
-    
-    static var previews: some View {
-        PlayerDetailView(player: Player(rk: 1, name: "Lebron James", pos: "PG", age: 30, team: "LAL", g: 30, gs: 30, mp: 40, fg: 60, fga: 80, fgp: 55.5, thp: 37, thpa: 39, thpp: 72, twp: 47, twpa: 73, twpp: 23, efgp: 23, ft: 34, fta: 45, ftp: 67, orb: 43, drb: 65, trb: 34, ast: 54, stl: 34, blk: 76, tov: 46, pf: 66, pts: 99))
-            .environmentObject(DataModel())
-    }
-}
