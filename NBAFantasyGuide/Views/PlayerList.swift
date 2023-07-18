@@ -7,13 +7,10 @@
 
 import SwiftUI
 
-struct Line: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: rect.width, y: 0))
-        return path
-    }
+struct RankedPlayer: Identifiable {
+    let id: Int // The Identifiable id
+    let rank: Int
+    let player: Player
 }
 
 struct PlayerList: View {
@@ -22,55 +19,60 @@ struct PlayerList: View {
     var statShown:Bool
     var selectedStat:String?
     var isHidden:Bool
+    var isMyPlayer:Bool
+    var isLabel:Bool
     var body: some View {
         let players = stat != nil ? stat:model.players
+        let sortedPlayersWithRank = players!.enumerated().map { (index, player) in
+                    RankedPlayer(id: index, rank: index + 1, player: player)
+                }
         ScrollView{
-            ForEach(players!) { player in
+            ForEach(sortedPlayersWithRank) { rankedPlayer in
                 ZStack {
                     BackgroundRectangle(opacity: 0.7)
                         .frame(width: 420, height: 40, alignment: .center)
                         .cornerRadius(20)
                     HStack(alignment: .center, spacing: 5.0){
-                        
-                        Text(String(model.num))
-                            .frame(width: 35, alignment: .center)
-                            .padding()
+                        if isLabel{
+                            Text(String("\(rankedPlayer.rank)"))
+                                .frame(width: 50, alignment: .trailing)
+                            .padding() }
                         NavigationLink {
-                            PlayerDetailView(player: player)
+                            PlayerDetailView(player: rankedPlayer.player)
                         } label: {
-                            Text(player.name)
+                            Text(rankedPlayer.player.name)
                                 .frame(width: 195, alignment: .leading)
                         }
                         
                         
                         if statShown {
                             if selectedStat == "Points" {
-                                Text(String(player.pts))
+                                Text(String(rankedPlayer.player.pts))
                                     .padding(.trailing)
                                     .frame(width: 60)
                             }
                             if selectedStat == "Rebounds" {
-                                Text(String(player.trb))
+                                Text(String(rankedPlayer.player.trb))
                                     .padding(.trailing)
                                     .frame(width: 60)
                             }
                             if selectedStat == "Assists" {
-                                Text(String(player.ast))
+                                Text(String(rankedPlayer.player.ast))
                                     .padding(.trailing)
                                     .frame(width: 60)
                             }
                             if selectedStat == "Steals" {
-                                Text(String(player.stl))
+                                Text(String(rankedPlayer.player.stl))
                                     .padding(.trailing)
                                     .frame(width: 60)
                             }
                             if selectedStat == "Blocks" {
-                                Text(String(player.blk))
+                                Text(String(rankedPlayer.player.blk))
                                     .padding(.trailing)
                                     .frame(width: 60)
                             }
                             if selectedStat == "Turnovers" {
-                                Text(String(player.tov))
+                                Text(String(rankedPlayer.player.tov))
                                     .padding(.trailing)
                                     .frame(width: 60)
                             }
@@ -78,23 +80,27 @@ struct PlayerList: View {
                         }
                         
                         
-                        
+                        if (isMyPlayer){
+                            Text(rankedPlayer.player.pos)
+                                .frame(width: 100)
+                        }
                         if (!model.myPlayers.contains(where: { myPlayer in
-                            myPlayer.rk == player.rk
+                            myPlayer.rk == rankedPlayer.player.rk
                         }))
                         {
                             Button("+") {
-                                model.myPlayers.append(player)
+                                model.myPlayers.append(rankedPlayer.player)
                             }
                             .foregroundColor(.black)
                             .frame(width: 20)
                         }
                         
                         else {
+                           
                             Button("-"){
                                 
                                 model.myPlayers.removeAll { object in
-                                    object.rk == player.rk
+                                    object.rk == rankedPlayer.player.rk
                                 }
                             }
                             .foregroundColor(.black)
@@ -105,9 +111,9 @@ struct PlayerList: View {
                             Button("Hide"){
                                 
                                 model.players.removeAll { object in
-                                    object.rk == player.rk
+                                    object.rk == rankedPlayer.player.rk
                                 }
-                                model.hiddenPlayers.append(player)
+                                model.hiddenPlayers.append(rankedPlayer.player)
                                 
                             }
                             .padding(.leading)
@@ -120,19 +126,17 @@ struct PlayerList: View {
                     
                     .padding(.trailing, 40.0)
                     .frame(alignment:.center)
+                    .id(rankedPlayer.id)
+
                 }
                 
                 
-                
             }
-        }
-        
-    }
-}
-
-struct PlayerList_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayerList(statShown: true, selectedStat: "Points", isHidden: true)
-            .environmentObject(DataModel())
-    }
-}
+                    }
+                    
+                    
+                    }
+                    
+                    }
+                    
+                    

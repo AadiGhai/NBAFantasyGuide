@@ -21,23 +21,44 @@ struct PlayersView: View {
                     .ignoresSafeArea()
                 VStack(alignment: .center) {
                     HStack(spacing: 10.0){
-                        Picker("Position", selection: $selectionPos) {
-                            ForEach(model.position, id: \.self) {
-                                Text($0)
+                        VStack{
+                            Picker("Position", selection: $selectionPos) {
+                                ForEach(model.position, id: \.self) {
+                                    Text($0)
+                                }
                             }
+                            .frame(width: 70)
+                            Text("Position")
+                                .font(.custom("NotoSansKannada-Bold", size: 15))
+
                         }
-                        .frame(width: 70)
-                        Picker("Team", selection: $selectionTeam) {
-                            ForEach(model.team, id: \.self) {
-                                Text($0)
+                       
+                        VStack {
+                            Picker("Team", selection: $selectionTeam) {
+                                ForEach(model.team, id: \.self) {
+                                    Text($0)
+                                }
                             }
+                            .frame(width: 85)
+                            Text("Team")
+                                .font(.custom("NotoSansKannada-Bold", size: 15))
+
                         }
-                        .frame(width: 80)
-                        Picker("Statistic", selection: $selectionStat) {
-                            ForEach(model.statistic, id: \.self) {
-                                Text($0)
+                        
+                        VStack {
+                            Picker("Statistic", selection: $selectionStat) {
+                                ForEach(model.statistic, id: \.self) {
+                                    Text($0)
+                                }
                             }
+                            .frame(width: 120)
+
+                            Text("Statistic")
+                                .font(.custom("NotoSansKannada-Bold", size: 15))
+
+
                         }
+                       
                         if model.hiddenPlayers.count > 0 {
                             Button {
                                 for player in model.hiddenPlayers {
@@ -66,8 +87,8 @@ struct PlayersView: View {
                     //MARK: labels
                     HStack(spacing: 0){
                         Text("Rk")
-                            .padding(.leading, 27.0)
-                            .frame(width: 50)
+                            .padding(.leading, 50)
+                            .frame(width: 80)
 
                         Text("Name")
                             .padding(.trailing, 100.0)
@@ -83,7 +104,7 @@ struct PlayersView: View {
                     .padding(.trailing, 65)
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
                     
-                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), statShown: true, selectedStat: selectionStat, isHidden: true)
+                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), statShown: true, selectedStat: selectionStat, isHidden: true, isMyPlayer: false, isLabel: true)
                 
                 }
                 .navigationTitle("Players")

@@ -16,7 +16,7 @@ struct SearchView: View {
                 BackgroundRectangle(opacity: 0.7)
                     .ignoresSafeArea()
                 ScrollView {
-                    PlayerList(stat: searchResults, statShown: false, isHidden: false)
+                    PlayerList(stat: searchResults, statShown: false, isHidden: false, isMyPlayer: true, isLabel: false)
                     
                 }
                 .navigationTitle("Search")
