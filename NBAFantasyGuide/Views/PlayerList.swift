@@ -13,6 +13,7 @@ struct RankedPlayer: Identifiable {
     let player: Player
 }
 
+
 struct PlayerList: View {
     @EnvironmentObject var model:DataModel
     var stat:[Player]?
@@ -85,11 +86,11 @@ struct PlayerList: View {
                                 .frame(width: 100)
                         }
                         if (!model.myPlayers.contains(where: { myPlayer in
-                            myPlayer.rk == rankedPlayer.player.rk
+                            myPlayer.id == rankedPlayer.player.id
                         }))
                         {
                             Button("+") {
-                                model.myPlayers.append(rankedPlayer.player)
+                                model.saveMyPlayer(id: rankedPlayer.player.id!)
                             }
                             .foregroundColor(.black)
                             .frame(width: 20)
@@ -98,11 +99,9 @@ struct PlayerList: View {
                         else {
                            
                             Button("-"){
-                                
-                                model.myPlayers.removeAll { object in
-                                    object.rk == rankedPlayer.player.rk
-                                }
-                            }
+                                if let myPlayer = model.myPlayers.first(where: { $0.id == rankedPlayer.player.id }) {
+                                    model.removeMyPlayer(myPlayer)
+                                }                            }
                             .foregroundColor(.black)
                             .frame(width: 20)
                             

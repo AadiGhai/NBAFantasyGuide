@@ -42,6 +42,7 @@ struct PlayersView: View {
                             .frame(width: 85)
                             Text("Team")
                                 .font(.custom("NotoSansKannada-Bold", size: 15))
+                                .padding(.trailing, 5)
 
                         }
                         
@@ -55,6 +56,7 @@ struct PlayersView: View {
 
                             Text("Statistic")
                                 .font(.custom("NotoSansKannada-Bold", size: 15))
+                                .padding(.trailing, 5)
 
 
                         }
@@ -74,7 +76,7 @@ struct PlayersView: View {
                                         .bold()
                                 }
                             }
-                            .padding(.leading, 10)
+                            .padding(.trailing, 10)
                         }
 
                     }

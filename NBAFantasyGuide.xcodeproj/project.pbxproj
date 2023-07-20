@@ -13,8 +13,6 @@
 		083EFFFC2A4910BD00F8D7D6 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EFFFB2A4910BD00F8D7D6 /* DataService.swift */; };
 		083EFFFE2A49F05900F8D7D6 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EFFFD2A49F05900F8D7D6 /* SearchView.swift */; };
 		084AA30D2A61FEA200184690 /* Player Data Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 084AA30B2A61FEA200184690 /* Player Data Model.xcdatamodeld */; };
-		084AA3102A6202A100184690 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AA30E2A6202A100184690 /* Player+CoreDataClass.swift */; };
-		084AA3112A6202A100184690 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AA30F2A6202A100184690 /* Player+CoreDataProperties.swift */; };
 		084AA3132A62057800184690 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AA3122A62057800184690 /* Persistence.swift */; };
 		084AA3152A620D4500184690 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AA3142A620D4500184690 /* Constants.swift */; };
 		085187CC2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */; };
@@ -29,6 +27,10 @@
 		08A37AC22A465C3D00CFF135 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A37AC12A465C3D00CFF135 /* Preview Assets.xcassets */; };
 		08A37AD02A465D9C00CFF135 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A37ACF2A465D9C00CFF135 /* Data.swift */; };
 		08A37AD62A466DD200CFF135 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A37AD52A466DD200CFF135 /* DataModel.swift */; };
+		08DF05832A69EC7E0075B979 /* MyPlayers+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DF057F2A69EC7E0075B979 /* MyPlayers+CoreDataClass.swift */; };
+		08DF05842A69EC7E0075B979 /* MyPlayers+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DF05802A69EC7E0075B979 /* MyPlayers+CoreDataProperties.swift */; };
+		08DF05852A69EC7E0075B979 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DF05812A69EC7E0075B979 /* Player+CoreDataClass.swift */; };
+		08DF05862A69EC7E0075B979 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DF05822A69EC7E0075B979 /* Player+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +40,6 @@
 		083EFFFB2A4910BD00F8D7D6 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		083EFFFD2A49F05900F8D7D6 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		084AA30C2A61FEA200184690 /* Player Data Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Player Data Model.xcdatamodel"; sourceTree = "<group>"; };
-		084AA30E2A6202A100184690 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
-		084AA30F2A6202A100184690 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		084AA3122A62057800184690 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		084AA3142A620D4500184690 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		085187CB2A47BC89006DAEF6 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -56,6 +56,10 @@
 		08A37AC12A465C3D00CFF135 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		08A37ACF2A465D9C00CFF135 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		08A37AD52A466DD200CFF135 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		08DF057F2A69EC7E0075B979 /* MyPlayers+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPlayers+CoreDataClass.swift"; sourceTree = "<group>"; };
+		08DF05802A69EC7E0075B979 /* MyPlayers+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPlayers+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		08DF05812A69EC7E0075B979 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		08DF05822A69EC7E0075B979 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,10 @@
 		08A37AAE2A465C3B00CFF135 = {
 			isa = PBXGroup;
 			children = (
+				08DF057F2A69EC7E0075B979 /* MyPlayers+CoreDataClass.swift */,
+				08DF05802A69EC7E0075B979 /* MyPlayers+CoreDataProperties.swift */,
+				08DF05812A69EC7E0075B979 /* Player+CoreDataClass.swift */,
+				08DF05822A69EC7E0075B979 /* Player+CoreDataProperties.swift */,
 				08A37AB92A465C3B00CFF135 /* NBAFantasyGuide */,
 				08A37AB82A465C3B00CFF135 /* Products */,
 			);
@@ -152,8 +160,6 @@
 		08A37ACB2A465C7800CFF135 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				084AA30E2A6202A100184690 /* Player+CoreDataClass.swift */,
-				084AA30F2A6202A100184690 /* Player+CoreDataProperties.swift */,
 				084AA3122A62057800184690 /* Persistence.swift */,
 				085187D02A48C34F006DAEF6 /* playerdata.json */,
 				083EFFFB2A4910BD00F8D7D6 /* DataService.swift */,
@@ -246,12 +252,14 @@
 				083EFFFE2A49F05900F8D7D6 /* SearchView.swift in Sources */,
 				083EFFFC2A4910BD00F8D7D6 /* DataService.swift in Sources */,
 				084AA3132A62057800184690 /* Persistence.swift in Sources */,
-				084AA3112A6202A100184690 /* Player+CoreDataProperties.swift in Sources */,
+				08DF05832A69EC7E0075B979 /* MyPlayers+CoreDataClass.swift in Sources */,
+				08DF05842A69EC7E0075B979 /* MyPlayers+CoreDataProperties.swift in Sources */,
 				083E00082A5636C800F8D7D6 /* PlayerDetailView.swift in Sources */,
+				08DF05862A69EC7E0075B979 /* Player+CoreDataProperties.swift in Sources */,
 				085187D32A48CF4A006DAEF6 /* NBATabView.swift in Sources */,
+				08DF05852A69EC7E0075B979 /* Player+CoreDataClass.swift in Sources */,
 				08A37AD62A466DD200CFF135 /* DataModel.swift in Sources */,
 				08A37ABD2A465C3B00CFF135 /* HomeView.swift in Sources */,
-				084AA3102A6202A100184690 /* Player+CoreDataClass.swift in Sources */,
 				083E00022A4A3CDB00F8D7D6 /* PlayerList.swift in Sources */,
 				083E00042A51288100F8D7D6 /* MyTeamCalculations.swift in Sources */,
 				08A37ABB2A465C3B00CFF135 /* NBAFantasyGuideApp.swift in Sources */,

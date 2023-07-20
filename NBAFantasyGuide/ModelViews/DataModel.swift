@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import CoreData
+
 class DataModel:ObservableObject{
     let managedObjectContext = PersistenceController.shared.container.viewContext
-    @Published var players: [Player]
-    @Published var myPlayers = [Player]()
+    @Published var players = [Player]()
+    @Published var myPlayers = [MyPlayers]()
     @Published var hiddenPlayers = [Player]()
     @Published var allPlayers = [Player]()
     @Published var num = 1
@@ -19,7 +21,6 @@ class DataModel:ObservableObject{
     let team = ["All", "ATL", "BRK", "BOS", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHO", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
     init(){
         //create an instance of data service and get the data
-        players = [Player]()
         checkLoadedData()
         allPlayers = players
 
@@ -32,6 +33,7 @@ class DataModel:ObservableObject{
         }
         else {
             fetchData()
+            fetchMyPlayers()
         }
     }
     func preloadLocalData() {
@@ -92,6 +94,71 @@ class DataModel:ObservableObject{
         }
 
     }
+    
+    func saveMyPlayer(id: UUID) {
+            let newPlayer = MyPlayers(context: managedObjectContext)
+            newPlayer.id = id
+            
+            myPlayers.append(newPlayer)
+            
+            do {
+                try managedObjectContext.save()
+            } catch {
+                print("Error saving MyPlayer to Core Data: \(error)")
+            }
+        }
+    
+    func removeMyPlayer(_ myPlayer: MyPlayers) {
+            if let index = myPlayers.firstIndex(of: myPlayer) {
+                myPlayers.remove(at: index)
+                managedObjectContext.delete(myPlayer)
+                
+                do {
+                    try managedObjectContext.save()
+                } catch {
+                    print("Error removing MyPlayer from Core Data: \(error)")
+                }
+            }
+        }
+    
+    func fetchMyPlayers() {
+           let fetchRequest: NSFetchRequest<MyPlayers> = NSFetchRequest(entityName: "MyPlayers")
+           
+           do {
+               myPlayers = try managedObjectContext.fetch(fetchRequest)
+           } catch {
+               print("Failed to fetch MyPlayers from Core Data: \(error)")
+           }
+       }
+    
+    func getPlayerByUUID(_ uuid: UUID) -> Player? {
+            let fetchRequest: NSFetchRequest<Player> = Player.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
+            fetchRequest.fetchLimit = 1
+            
+            do {
+                let result = try managedObjectContext.fetch(fetchRequest)
+                return result.first
+            } catch {
+                print("Error fetching player from Core Data: \(error)")
+                return nil
+            }
+        }
+    
+    func getMyPlayerObjects() -> [Player] {
+            var playerObjects = [Player]()
+            
+            for myPlayer in myPlayers {
+                if let playerUUID = myPlayer.id {
+                    if let player = getPlayerByUUID(playerUUID) {
+                        playerObjects.append(player)
+                    }
+                }
+            }
+            
+            return playerObjects
+        }
+    
     func sort (_ pos:String, _ tm:String, _ stat:String)->[Player] {
         var modifiedPlayers = players
         if pos != "All" {

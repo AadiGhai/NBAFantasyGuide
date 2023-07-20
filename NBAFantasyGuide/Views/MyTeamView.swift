@@ -35,9 +35,7 @@ struct MyTeamView: View {
                         }
 
                        
-
-
-                        PlayerList(stat: model.myPlayers, statShown: false, isHidden:false, isMyPlayer: true, isLabel: false)
+                        PlayerList(stat: model.getMyPlayerObjects(), statShown: false, isHidden:false, isMyPlayer: true, isLabel: false)
 
                     }
             }

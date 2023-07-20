@@ -137,29 +137,30 @@ struct PlayerDetailView: View {
             }
             .navigationTitle(player.name)
             .toolbar {
-                if !model.myPlayers.contains(where: { myPlayer in
-                    myPlayer.rk == player.rk
-                })
-                {
-                    Button("+") {
-                        model.myPlayers.append(player)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if !model.myPlayers.contains(where: { myPlayer in
+                        myPlayer.id == player.id
+                    }) {
+                        Button(action: {
+                            model.saveMyPlayer(id: player.id!)
+                        }, label: {
+                            Text("+")
+                                .font(.custom("NotoSansKannada-Plain", size: 50))
+                        })
+                        .foregroundColor(.black)
+                    } else {
+                        Button(action: {
+                            if let myPlayer = model.myPlayers.first(where: { $0.id == player.id }) {
+                                model.removeMyPlayer(myPlayer)
+                            }
+                        }, label: {
+                            Text("-")
+                                .font(.custom("NotoSansKannada-Plain", size: 50))
+                        })
+                        .foregroundColor(.black)
                     }
-                    .foregroundColor(.black)
-                    .font(.custom("NotoSansKannada-Plain", size: 50))
                 }
-                else {
-                    Button("-"){
-                        model.myPlayers.removeAll { object in
-                            object.rk == player.rk
-                        }
-                    }
-                    .foregroundColor(.black)
-                    .font(.custom("NotoSansKannada-Plain", size: 50))
-                }
-                
             }
         }
-        
     }
 }
-
