@@ -81,6 +81,12 @@ struct PlayerDetailView: View {
                                         .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
                                         .padding(.vertical, 10) // Add vertical spacing between the text elements
                                 }
+                                ZStack(alignment: .topLeading) {
+                                    Color.blue.opacity(0.2)
+                                    Text("Predicted Fantasy Point Increase: \(MyTeamCalulations.fantasyPointIncrease(player))")
+                                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
+                                        .padding(.vertical, 10) // Add vertical spacing between the text elements
+                                }
                                 
                             }
                         }
@@ -90,7 +96,8 @@ struct PlayerDetailView: View {
                         Divider()
                         Divider()
                         Divider()
-                        
+                        Divider()
+
                         Text("Per-Game Stats from the 2022-2023 Season:")
                             .font(.custom("NotoSansKannada-Bold", size: 20))
                         ForEach(detailElements.indices, id: \.self) { index in

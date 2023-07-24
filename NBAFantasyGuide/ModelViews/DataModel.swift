@@ -16,7 +16,7 @@ class DataModel:ObservableObject{
     @Published var allPlayers = [Player]()
     @Published var num = 1
     @Published var tabSelectedIndex = 1
-    let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers"]
+let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers", "PFP Increase"]
     let position = ["All", "PG", "SG", "SF", "PF", "C"]
     let team = ["All", "ATL", "BRK", "BOS", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHO", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
     init(){
@@ -199,6 +199,11 @@ class DataModel:ObservableObject{
         if stat == "Turnovers" {
             modifiedPlayers = modifiedPlayers.sorted {
                 $0.tov > $1.tov
+            }
+        }
+        if stat == "PFP Increase" {
+            modifiedPlayers = modifiedPlayers.sorted {
+                Double(MyTeamCalulations.fantasyPointIncrease($0))! > Double(MyTeamCalulations.fantasyPointIncrease($1))!
             }
         }
         return modifiedPlayers

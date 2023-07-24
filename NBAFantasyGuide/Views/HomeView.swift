@@ -7,8 +7,36 @@
 
 import SwiftUI
 
+struct InfoPopupView: View {
+    @Binding var isInfoPopupVisible: Bool
+    var body: some View {
+        ZStack{
+            BackgroundRectangle(opacity: 0.7)
+                .ignoresSafeArea()
+            VStack {
+                Text("How the App Works") // Customize this text as per your needs
+                    .font(.title)
+                    .padding()
+                Text("Add your explanation here.") // Add your detailed explanation here
+                    .padding()
+                Button("Dismiss") {
+                   isInfoPopupVisible = false
+                }
+                .padding()
+                .font(.custom("NotoSansKannada-Light", size: 16))
+            }
+            .frame(width: 300, height: 200)
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+        }
+        
+    }
+}
+
 struct HomeView: View {
     @EnvironmentObject var model: DataModel
+    @State private var isInfoPopupVisible = false
     var body: some View {
         NavigationView {
             ZStack{
@@ -81,10 +109,26 @@ struct HomeView: View {
                         
                     }
                     
+                    //MARK: Info button
+                    HStack{
+                        Spacer()
+                        Button(action: {
+                                        isInfoPopupVisible = true
+                                    }) {
+                                        Image(systemName: "info.circle")
+                                            .imageScale(.large)
+                                            .font(.custom("NotoSansKannada-Light", size: 16))
+                                    }
+                                }
+                    .foregroundColor(.blue)
+                    .offset(y: -30)
+                    .padding(.trailing, 20)
+                    .sheet(isPresented: $isInfoPopupVisible) {
+                                InfoPopupView(isInfoPopupVisible: $isInfoPopupVisible)
+                            }
                     
-                    
-                }
-                
+                    }
+                  
                 
                 
                 

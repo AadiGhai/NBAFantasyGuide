@@ -77,6 +77,11 @@ struct PlayerList: View {
                                     .padding(.trailing)
                                     .frame(width: 60)
                             }
+                            if selectedStat == "PFP Increase" {
+                                Text(MyTeamCalulations.fantasyPointIncrease(rankedPlayer.player))
+                                    .padding(.trailing)
+                                    .frame(width: 70)
+                            }
                             
                         }
                         
@@ -137,5 +142,3 @@ struct PlayerList: View {
                     }
                     
                     }
-                    
-                    
