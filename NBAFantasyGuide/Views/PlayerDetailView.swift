@@ -121,8 +121,7 @@ struct PlayerDetailView: View {
                             Spacer()
                             Spacer()
                             Spacer()
-                            Spacer()
-                            
+                            Divider()
                             Text("Per-Game Stats from the 2022-2023 Season:")
                                 .font(.custom("NotoSansKannada-Bold", size: 20))
                             ForEach(detailElements.indices, id: \.self) { index in
