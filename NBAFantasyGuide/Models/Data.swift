@@ -39,4 +39,13 @@ struct PlayerJSON: Decodable, Identifiable {
     var tov:Double
     var pf:Double
     var pts:Double
+    var isRookie:Bool?
+    var college:String?
 }
+
+struct ArticleJSON: Decodable, Identifiable {
+    var id:UUID?
+    var articleName:String
+    var articleURL:String
+}
+

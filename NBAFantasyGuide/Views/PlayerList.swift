@@ -29,109 +29,111 @@ struct PlayerList: View {
                 }
         ScrollView{
             ForEach(sortedPlayersWithRank) { rankedPlayer in
-                ZStack {
-                    BackgroundRectangle(opacity: 0.7)
-                        .frame(width: 420, height: 40, alignment: .center)
-                        .cornerRadius(20)
-                    HStack(alignment: .center, spacing: 5.0){
-                        if isLabel{
-                            Text(String("\(rankedPlayer.rank)"))
-                                .frame(width: 50, alignment: .trailing)
-                            .padding() }
-                        NavigationLink {
-                            PlayerDetailView(player: rankedPlayer.player)
-                        } label: {
-                            Text(rankedPlayer.player.name)
-                                .frame(width: 195, alignment: .leading)
-                        }
-                        
-                        
-                        if statShown {
-                            if selectedStat == "Points" {
-                                Text(String(rankedPlayer.player.pts))
-                                    .padding(.trailing)
-                                    .frame(width: 60)
-                            }
-                            if selectedStat == "Rebounds" {
-                                Text(String(rankedPlayer.player.trb))
-                                    .padding(.trailing)
-                                    .frame(width: 60)
-                            }
-                            if selectedStat == "Assists" {
-                                Text(String(rankedPlayer.player.ast))
-                                    .padding(.trailing)
-                                    .frame(width: 60)
-                            }
-                            if selectedStat == "Steals" {
-                                Text(String(rankedPlayer.player.stl))
-                                    .padding(.trailing)
-                                    .frame(width: 60)
-                            }
-                            if selectedStat == "Blocks" {
-                                Text(String(rankedPlayer.player.blk))
-                                    .padding(.trailing)
-                                    .frame(width: 60)
-                            }
-                            if selectedStat == "Turnovers" {
-                                Text(String(rankedPlayer.player.tov))
-                                    .padding(.trailing)
-                                    .frame(width: 60)
-                            }
-                            if selectedStat == "PFP Increase" {
-                                Text(MyTeamCalulations.fantasyPointIncrease(rankedPlayer.player))
-                                    .padding(.trailing)
-                                    .frame(width: 70)
+                if rankedPlayer.player.isRookie != true{
+                    ZStack {
+                        BackgroundRectangle(opacity: 0.7)
+                            .frame(width: 420, height: 40, alignment: .center)
+                            .cornerRadius(20)
+                        HStack(alignment: .center, spacing: 5.0){
+                            if isLabel{
+                                Text(String("\(rankedPlayer.rank)"))
+                                    .frame(width: 50, alignment: .trailing)
+                                .padding() }
+                            NavigationLink {
+                                PlayerDetailView(player: rankedPlayer.player)
+                            } label: {
+                                Text(rankedPlayer.player.name)
+                                    .frame(width: 195, alignment: .leading)
                             }
                             
-                        }
-                        
-                        
-                        if (isMyPlayer){
-                            Text(rankedPlayer.player.pos)
-                                .frame(width: 100)
-                        }
-                        if (!model.myPlayers.contains(where: { myPlayer in
-                            myPlayer.id == rankedPlayer.player.id
-                        }))
-                        {
-                            Button("+") {
-                                model.saveMyPlayer(id: rankedPlayer.player.id!)
-                            }
-                            .foregroundColor(.black)
-                            .frame(width: 20)
-                        }
-                        
-                        else {
-                           
-                            Button("-"){
-                                if let myPlayer = model.myPlayers.first(where: { $0.id == rankedPlayer.player.id }) {
-                                    model.removeMyPlayer(myPlayer)
-                                }                            }
-                            .foregroundColor(.black)
-                            .frame(width: 20)
                             
-                        }
-                        if isHidden {
-                            Button("Hide"){
-                                
-                                model.players.removeAll { object in
-                                    object.rk == rankedPlayer.player.rk
+                            if statShown {
+                                if selectedStat == "Points" {
+                                    Text(String(rankedPlayer.player.pts))
+                                        .padding(.trailing)
+                                        .frame(width: 60)
                                 }
-                                model.hiddenPlayers.append(rankedPlayer.player)
+                                if selectedStat == "Rebounds" {
+                                    Text(String(rankedPlayer.player.trb))
+                                        .padding(.trailing)
+                                        .frame(width: 60)
+                                }
+                                if selectedStat == "Assists" {
+                                    Text(String(rankedPlayer.player.ast))
+                                        .padding(.trailing)
+                                        .frame(width: 60)
+                                }
+                                if selectedStat == "Steals" {
+                                    Text(String(rankedPlayer.player.stl))
+                                        .padding(.trailing)
+                                        .frame(width: 60)
+                                }
+                                if selectedStat == "Blocks" {
+                                    Text(String(rankedPlayer.player.blk))
+                                        .padding(.trailing)
+                                        .frame(width: 60)
+                                }
+                                if selectedStat == "Turnovers" {
+                                    Text(String(rankedPlayer.player.tov))
+                                        .padding(.trailing)
+                                        .frame(width: 60)
+                                }
+                                if selectedStat == "PFP Increase" {
+                                    Text(MyTeamCalulations.fantasyPointIncrease(rankedPlayer.player))
+                                        .padding(.trailing)
+                                        .frame(width: 70)
+                                }
                                 
                             }
-                            .padding(.leading)
-                            .foregroundColor(.black)
-                            .frame(width: 60)
+                            
+                            
+                            if (isMyPlayer){
+                                Text(rankedPlayer.player.pos)
+                                    .frame(width: 100)
+                            }
+                            if (!model.myPlayers.contains(where: { myPlayer in
+                                myPlayer.id == rankedPlayer.player.id
+                            }))
+                            {
+                                Button("+") {
+                                    model.saveMyPlayer(id: rankedPlayer.player.id!)
+                                }
+                                .foregroundColor(.black)
+                                .frame(width: 20)
+                            }
+                            
+                            else {
+                                
+                                Button("-"){
+                                    if let myPlayer = model.myPlayers.first(where: { $0.id == rankedPlayer.player.id }) {
+                                        model.removeMyPlayer(myPlayer)
+                                    }                            }
+                                .foregroundColor(.black)
+                                .frame(width: 20)
+                                
+                            }
+                            if isHidden {
+                                Button("Hide"){
+                                    
+                                    model.players.removeAll { object in
+                                        object.rk == rankedPlayer.player.rk
+                                    }
+                                    model.hiddenPlayers.append(rankedPlayer.player)
+                                    
+                                }
+                                .padding(.leading)
+                                .foregroundColor(.black)
+                                .frame(width: 60)
+                            }
+                            
                         }
+                        .font(.custom("NotoSansKannada-SemiBold", size: 18))
+                        
+                        .padding(.trailing, 40.0)
+                        .frame(alignment:.center)
+                        .id(rankedPlayer.id)
                         
                     }
-                    .font(.custom("NotoSansKannada-SemiBold", size: 18))
-                    
-                    .padding(.trailing, 40.0)
-                    .frame(alignment:.center)
-                    .id(rankedPlayer.id)
-
                 }
                 
                 

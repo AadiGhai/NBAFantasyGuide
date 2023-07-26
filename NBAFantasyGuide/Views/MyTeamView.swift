@@ -33,9 +33,22 @@ struct MyTeamView: View {
                    
                             
                         }
+                        VStack(){
+                            Text("Players")
+                                .font(.custom("NotoSansKannada-Bold", size:25))
+                            Divider()
 
-                       
-                        PlayerList(stat: model.getMyPlayerObjects(), statShown: false, isHidden:false, isMyPlayer: true, isLabel: false)
+                            PlayerList(stat: model.getMyPlayerObjects(), statShown: false, isHidden:false, isMyPlayer: true, isLabel: false)
+                        }
+                        VStack{
+                            Text("Rookies")
+                                .font(.custom("NotoSansKannada-Bold", size: 25))
+
+                            Divider()
+
+                            RookiePlayerList(players: model.getMyPlayerObjects(), isHidden: false, isLabel: false)
+                        }
+                        
 
                     }
             }

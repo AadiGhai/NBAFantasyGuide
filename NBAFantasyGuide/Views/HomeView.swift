@@ -44,7 +44,7 @@ struct HomeView: View {
                     .ignoresSafeArea()
                 VStack(spacing: 40.0){
                     //MARK: my team card
-                    
+                    Spacer()
                     NavigationLink {
                         MyTeamView()
                     } label: {
@@ -59,6 +59,9 @@ struct HomeView: View {
                                         .font(.custom("NotoSansKannada-Bold", size: 40))
                                     
                                     //Image(nba)
+                                    Image(systemName: "person.3.sequence")
+                                        .offset(x:20, y:-10)
+                                        .font(.custom("NotoSansKannada-Bold", size: 40))
                                 }
                                 
                                 
@@ -94,12 +97,17 @@ struct HomeView: View {
                         VStack(alignment: .leading, spacing: 20){
                             Text("Articles")
                                 .font(.custom("NotoSansKannada-Bold", size: 40))
-                                .padding(.top, 10.0)
+                                .offset(x:-10, y:30)
+                            Spacer()
+                            ScrollView{
+                                ForEach(model.articles) { article in
+                                    ArticleButton(articleName: article.articleName, articleURL: article.articleURL)
+                                }
+                            }
+                           .offset(y:-20)
                             
-                            Text("Article 1")
-                            Text("Article 2")
-                            Text("Article 3")
-                            Text("                                                                 ")
+                        
+                       
                             
                             
                         }
@@ -121,7 +129,7 @@ struct HomeView: View {
                                     }
                                 }
                     .foregroundColor(.blue)
-                    .offset(y: -30)
+                    .offset(y: -55)
                     .padding(.trailing, 20)
                     .sheet(isPresented: $isInfoPopupVisible) {
                                 InfoPopupView(isInfoPopupVisible: $isInfoPopupVisible)
@@ -131,8 +139,7 @@ struct HomeView: View {
                   
                 
                 
-                
-                
+
                 
             
         }

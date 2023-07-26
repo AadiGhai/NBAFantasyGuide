@@ -81,53 +81,79 @@ struct PlayerDetailView: View {
                                         .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
                                         .padding(.vertical, 10) // Add vertical spacing between the text elements
                                 }
-                                ZStack(alignment: .topLeading) {
-                                    Color.blue.opacity(0.2)
-                                    Text("Predicted Fantasy Point Increase: \(MyTeamCalulations.fantasyPointIncrease(player))")
-                                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
-                                        .padding(.vertical, 10) // Add vertical spacing between the text elements
+                                if player.isRookie == false {
+                                    ZStack(alignment: .topLeading) {
+                                        Color.blue.opacity(0.2)
+                                        Text("Predicted Fantasy Point Increase: \(MyTeamCalulations.fantasyPointIncrease(player))")
+                                            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
+                                            .padding(.vertical, 10) // Add vertical spacing between the text elements
+                                    }
+                                }
+                                else {
+                                    ZStack(alignment: .topLeading) {
+                                        Color.blue.opacity(0.2)
+                                        Text("Pick: \(player.rk)")
+                                            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
+                                            .padding(.vertical, 10) // Add vertical spacing between the text elements
+                                    }
+                                    ZStack(alignment: .topLeading) {
+                                        Color.purple.opacity(0.2)
+                                        Text("Rookie")
+                                            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
+                                            .padding(.vertical, 10) // Add vertical spacing between the text elements
+                                    }
+                                    if player.college != nil {
+                                        ZStack(alignment: .topLeading) {
+                                            Color.blue.opacity(0.2)
+                                            Text("From \(player.college!)")
+                                                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
+                                                .padding(.vertical, 10) // Add vertical spacing between the text elements
+                                        }
+
+                                    }
                                 }
                                 
                             }
                         }
                             
                         
-                        
-                        Divider()
-                        Divider()
-                        Divider()
-                        Divider()
-
-                        Text("Per-Game Stats from the 2022-2023 Season:")
-                            .font(.custom("NotoSansKannada-Bold", size: 20))
-                        ForEach(detailElements.indices, id: \.self) { index in
-                                           CustomRowView(detail: detailElements[index], index: index)
-                                               .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-                                       }
-
-                        
-                        Divider()
-                        
-                        Text("Totals from the 2022-2023 Season:")
-                            .font(.custom("NotoSansKannada-Bold", size: 20))
-
-                        GeometryReader { geometry in
-                            VStack {
-                                ZStack(alignment: .topLeading) {
+                        if player.isRookie != true {
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                            
+                            Text("Per-Game Stats from the 2022-2023 Season:")
+                                .font(.custom("NotoSansKannada-Bold", size: 20))
+                            ForEach(detailElements.indices, id: \.self) { index in
+                                CustomRowView(detail: detailElements[index], index: index)
+                                    .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            }
+                            
+                            
+                            Divider()
+                            
+                            Text("Totals from the 2022-2023 Season:")
+                                .font(.custom("NotoSansKannada-Bold", size: 20))
+                            
+                            GeometryReader { geometry in
+                                VStack {
+                                    ZStack(alignment: .topLeading) {
                                         Color.blue.opacity(0.2)
-                                    Text("Games Played: \(String(player.g))")
-                                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
-                                        .padding(.vertical, 10) // Add vertical spacing between the text elements
-                                }
-                                ZStack(alignment: .topLeading) {
+                                        Text("Games Played: \(String(player.g))")
+                                            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
+                                            .padding(.vertical, 10) // Add vertical spacing between the text elements
+                                    }
+                                    ZStack(alignment: .topLeading) {
                                         Color.purple.opacity(0.2)
-                                    Text("Games Started: \(String(player.gs))")
-                                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
-                                        .padding(.vertical, 10) // Add vertical spacing between the text elements
+                                        Text("Games Started: \(String(player.gs))")
+                                            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
+                                            .padding(.vertical, 10) // Add vertical spacing between the text elements
+                                    }
+                                    
                                 }
-                                
                             }
-                            }
+                        }
                          
     
                         

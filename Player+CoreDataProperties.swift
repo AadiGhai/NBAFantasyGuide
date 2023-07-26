@@ -2,7 +2,7 @@
 //  Player+CoreDataProperties.swift
 //  NBAFantasyGuide
 //
-//  Created by Aadi Ghai on 7/20/23.
+//  Created by Aadi Ghai on 7/25/23.
 //
 //
 
@@ -47,6 +47,8 @@ extension Player {
     @NSManaged public var twp: Double
     @NSManaged public var twpa: Double
     @NSManaged public var twpp: Double
+    @NSManaged public var isRookie: Bool
+    @NSManaged public var college: String?
 
 }
 

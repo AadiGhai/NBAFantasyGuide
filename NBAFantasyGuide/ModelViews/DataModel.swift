@@ -14,6 +14,7 @@ class DataModel:ObservableObject{
     @Published var myPlayers = [MyPlayers]()
     @Published var hiddenPlayers = [Player]()
     @Published var allPlayers = [Player]()
+    @Published var articles = [Article]()
     @Published var num = 1
     @Published var tabSelectedIndex = 1
 let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers", "PFP Increase"]
@@ -34,6 +35,7 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
         else {
             fetchData()
             fetchMyPlayers()
+            fetchArticles()
         }
     }
     func preloadLocalData() {
@@ -41,6 +43,10 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
         for p in localPlayers {
            let player =  Player(context: managedObjectContext)
             player.id = UUID()
+            player.isRookie = p.isRookie!
+            if p.college != nil {
+                player.college = p.college
+            }
             player.age = p.age
             player.ast = p.ast
             player.blk = p.blk
@@ -83,6 +89,23 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
             
         }
             
+        let localArticles = DataService.getArticleData()
+        for a in localArticles {
+           let article =  Article(context: managedObjectContext)
+            article.id = UUID()
+            article.articleName = a.articleName
+            article.articleURL = a.articleURL
+            articles.append(article)
+}
+
+        do {
+            try managedObjectContext.save()
+            UserDefaults.standard.setValue(true, forKey: Constants.isDataPreloaded)
+
+        }
+        catch {
+            
+        }
         
         
     }
@@ -210,10 +233,40 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
         
         
     }
-     func increment () {
-        num += 1
-    }
     func changeSelection (_ num:Int) {
         tabSelectedIndex = num
+    }
+    func saveArticle(articleName: String, articleURL: URL) {
+        let newArticle = Article(context: managedObjectContext)
+        newArticle.id = UUID()
+        newArticle.articleName = articleName
+        newArticle.articleURL = articleURL.absoluteString // Convert URL to String for storage
+        
+        articles.append(newArticle)
+        
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving Article to Core Data: \(error)")
+        }
+    }
+    func fetchArticles() {
+        do {
+            articles = try managedObjectContext.fetch(Article.fetchRequest())
+        } catch {
+            print("Failed to fetch articles from Core Data: \(error)")
+        }
+    }
+    func removeArticle(_ article: Article) {
+        if let index = articles.firstIndex(of: article) {
+            articles.remove(at: index)
+            managedObjectContext.delete(article)
+            
+            do {
+                try managedObjectContext.save()
+            } catch {
+                print("Error removing Article from Core Data: \(error)")
+            }
+        }
     }
 }

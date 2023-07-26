@@ -12,6 +12,7 @@ struct PlayersView: View {
     @State var selectionTeam = "All"
     @State var selectionStat = "Points"
     @State var selectionPos = "All"
+    @State var selectionPlayer = "Players"
     
     var body: some View {
      
@@ -20,6 +21,13 @@ struct PlayersView: View {
                 BackgroundRectangle(opacity: 0.7)
                     .ignoresSafeArea()
                 VStack(alignment: .center) {
+                    Picker("", selection: $selectionPlayer) {
+                        Text("Players").tag("Players")
+                        Text("Rookies").tag("Rookies")
+
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 400)
                     HStack(spacing: 10.0){
                         VStack{
                             Picker("Position", selection: $selectionPos) {
@@ -45,20 +53,21 @@ struct PlayersView: View {
                                 .padding(.trailing, 5)
 
                         }
-                        
-                        VStack {
-                            Picker("Statistic", selection: $selectionStat) {
-                                ForEach(model.statistic, id: \.self) {
-                                    Text($0)
+                        if selectionPlayer == "Players"{
+                            VStack {
+                                Picker("Statistic", selection: $selectionStat) {
+                                    ForEach(model.statistic, id: \.self) {
+                                        Text($0)
+                                    }
                                 }
+                                .frame(width: 120)
+                                
+                                Text("Statistic")
+                                    .font(.custom("NotoSansKannada-Bold", size: 15))
+                                    .padding(.trailing, 5)
+                                
+                                
                             }
-                            .frame(width: 120)
-
-                            Text("Statistic")
-                                .font(.custom("NotoSansKannada-Bold", size: 15))
-                                .padding(.trailing, 5)
-
-
                         }
                        
                         if model.hiddenPlayers.count > 0 {
@@ -95,18 +104,29 @@ struct PlayersView: View {
                         Text("Name")
                             .padding(.trailing, 100.0)
                             .frame(width: 195)
-                        
-                        Text(selectionStat)
-                            .padding(.trailing, 60.0)
-                            .frame(width: 150)
+                        if selectionPlayer == "Players"{
+                            Text(selectionStat)
+                                .padding(.trailing, 60.0)
+                                .frame(width: 150)
+                        }
+                        else {
+                            Text("Position")
+                                .padding(.trailing, 60.0)
+                                .frame(width: 150)
+                        }
                             
 
                     }
                     .padding(.top, 10.0)
                     .padding(.trailing, 65)
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
-                    
-                    PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), statShown: true, selectedStat: selectionStat, isHidden: true, isMyPlayer: false, isLabel: true)
+                    Divider()
+                    if selectionPlayer == "Players"{
+                        PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), statShown: true, selectedStat: selectionStat, isHidden: true, isMyPlayer: false, isLabel: true)
+                    }
+                    else {
+                        RookiePlayerList(players: model.sort(selectionPos, selectionTeam, "None"), isHidden: true, isLabel: true)
+                    }
                 
                 }
                 .navigationTitle("Players")
