@@ -269,4 +269,5 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
             }
         }
     }
+    
 }
