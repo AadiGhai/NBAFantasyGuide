@@ -23,6 +23,7 @@ struct PlayerList: View {
     var isMyPlayer:Bool
     var isLabel:Bool
     var body: some View {
+        
         let players = stat != nil ? stat:model.players
         let sortedPlayersWithRank = players!.enumerated().map { (index, player) in
                     RankedPlayer(id: index, rank: index + 1, player: player)
@@ -38,7 +39,9 @@ struct PlayerList: View {
                             if isLabel{
                                 Text(String("\(rankedPlayer.rank)"))
                                     .frame(width: 50, alignment: .trailing)
-                                .padding() }
+                                .padding()
+                                .offset(x: 7)
+                            }
                             NavigationLink {
                                 PlayerDetailView(player: rankedPlayer.player)
                             } label: {
@@ -124,6 +127,7 @@ struct PlayerList: View {
                                 .padding(.leading)
                                 .foregroundColor(.black)
                                 .frame(width: 60)
+                                .offset(x:-5)
                             }
                             
                         }
@@ -139,6 +143,7 @@ struct PlayerList: View {
                 
             }
                     }
+        
                     
                     
                     }

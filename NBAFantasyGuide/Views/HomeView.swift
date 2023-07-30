@@ -9,150 +9,137 @@ import SwiftUI
 
 struct InfoPopupView: View {
     @Binding var isInfoPopupVisible: Bool
+    
     var body: some View {
-        ZStack{
-            BackgroundRectangle(opacity: 0.7)
-                .ignoresSafeArea()
-            VStack {
-                Text("How the App Works") // Customize this text as per your needs
-                    .font(.title)
+        GeometryReader { geometry in
+            ZStack {
+                BackgroundRectangle(opacity: 0.7)
+                    .ignoresSafeArea()
+                
+                VStack {
+                    Text("How the App Works") // Customize this text as per your needs
+                        .font(.title)
+                        .padding()
+                    
+                    Text("Add your explanation here.") // Add your detailed explanation here
+                        .padding()
+                        .font(.custom("NotoSansKannada-Light", size: 16))
+                    
+                    Button("Dismiss") {
+                        isInfoPopupVisible = false
+                    }
                     .padding()
-                Text("Add your explanation here.") // Add your detailed explanation here
-                    .padding()
-                Button("Dismiss") {
-                   isInfoPopupVisible = false
+                    .font(.custom("NotoSansKannada-Light", size: 16))
                 }
+                .frame(width: min(300, geometry.size.width * 0.8), height: min(200, geometry.size.height * 0.5))
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 5)
                 .padding()
-                .font(.custom("NotoSansKannada-Light", size: 16))
             }
-            .frame(width: 300, height: 200)
-            .background(Color.white)
-            .cornerRadius(10)
-            .shadow(radius: 5)
         }
-        
     }
 }
 
 struct HomeView: View {
     @EnvironmentObject var model: DataModel
     @State private var isInfoPopupVisible = false
+    
     var body: some View {
         NavigationView {
-            ZStack{
-                BackgroundRectangle(opacity: 0.7)
-                    .ignoresSafeArea()
-                VStack(spacing: 40.0){
-                    //MARK: my team card
-                    Spacer()
-                    NavigationLink {
-                        MyTeamView()
-                    } label: {
-                        ZStack{
+            GeometryReader { geometry in
+                ZStack {
+                    BackgroundRectangle(opacity: 0.7)
+                        .ignoresSafeArea()
+                    
+                    VStack(spacing: geometry.size.height * 0.03) {
+                        Spacer()
+                        
+                        //MARK: my team card
+                        NavigationLink(destination: MyTeamView()) {
+                            ZStack {
+                                BackgroundRectangle(opacity: 0.3)
+                                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.5)
+                                    .cornerRadius(100)
+                                    .shadow(radius: 10)
+                                
+                                VStack(alignment: .leading, spacing: geometry.size.height * 0.01) {
+                                    HStack {
+                                        Text("My Team")
+                                            .font(.custom("NotoSansKannada-Bold", size: geometry.size.width * 0.1))
+                                        
+                                        Image(systemName: "person.3.sequence")
+                                            .offset(x: geometry.size.width * 0.04, y: -geometry.size.height * 0.02)
+                                            .font(.custom("NotoSansKannada-Bold", size: geometry.size.width * 0.12))
+                                    }
+                                    
+                                    Text("Team Averages (from 2022-2023 Season): ")
+                                        .padding(.bottom)
+                                        .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.04))
+                                    
+                                    Text("Points: \(MyTeamCalulations.totalPoints(model.getMyPlayerObjects()))")
+                                        .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.04))
+                                    Text("Rebounds: \(MyTeamCalulations.totalRebounds(model.getMyPlayerObjects()))")
+                                        .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.04))
+                                    Text("Assists: \(MyTeamCalulations.totalAssists(model.getMyPlayerObjects()))")
+                                        .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.04))
+                                    Text("Steals: \(MyTeamCalulations.totalSteals(model.getMyPlayerObjects()))")
+                                        .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.04))
+                                    Text("Blocks: \(MyTeamCalulations.totalBlocks(model.getMyPlayerObjects()))")
+                                        .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.04))
+                                    Text("Turnovers: \(MyTeamCalulations.totalTurnovers(model.getMyPlayerObjects()))")
+                                        .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.04))
+                                }
+                                .padding(.leading)
+                            }
+                        }
+                        .foregroundColor(.black)
+                        
+                        //MARK: articles card
+                        ZStack {
                             BackgroundRectangle(opacity: 0.3)
-                                .frame(width: 350, height: 400)
+                                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.4)
                                 .cornerRadius(100)
                                 .shadow(radius: 10)
-                            VStack(alignment: .leading, spacing: 10.0) {
-                                HStack{
-                                    Text("My Team")
-                                        .font(.custom("NotoSansKannada-Bold", size: 40))
-                                    
-                                    //Image(nba)
-                                    Image(systemName: "person.3.sequence")
-                                        .offset(x:20, y:-10)
-                                        .font(.custom("NotoSansKannada-Bold", size: 40))
-                                }
-                                
-                                
-                                Text("Team Averages (from 2022-2023 Season): ")
-                                    .padding(.bottom)
-                                
-                                Text("Points: \(MyTeamCalulations.totalPoints(model.getMyPlayerObjects()))")
-                                Text("Rebounds: \(MyTeamCalulations.totalRebounds(model.getMyPlayerObjects()))")
-                                Text("Assists: \(MyTeamCalulations.totalAssists(model.getMyPlayerObjects()))")
-                                Text("Steals: \(MyTeamCalulations.totalSteals(model.getMyPlayerObjects()))")
-                                Text("Blocks: \(MyTeamCalulations.totalBlocks(model.getMyPlayerObjects()))")
-                                Text("Turnovers: \(MyTeamCalulations.totalTurnovers(model.getMyPlayerObjects()))")
-
-                                
-                                
-                            }
-                            .padding(.leading)
-                            .font(.custom("NotoSansKannada-Light", size: 16))
                             
-                        }
-                    }
-                    .foregroundColor(.black)
-
-                    
-                    
-                    
-                    //MARK: articles card
-                    ZStack {
-                        BackgroundRectangle(opacity: 0.3)
-                            .frame(width: 350, height: 300)
-                            .cornerRadius(100)
-                            .shadow(radius: 10)
-                        VStack(alignment: .leading, spacing: 20){
-                            Text("Articles")
-                                .font(.custom("NotoSansKannada-Bold", size: 40))
-                                .offset(x:-10, y:30)
-                            Spacer()
-                            ScrollView{
-                                ForEach(model.articles) { article in
-                                    ArticleButton(articleName: article.articleName, articleURL: article.articleURL)
-                                }
-                            }
-                           .offset(y:-20)
-                            
-                        
-                       
-                            
-                            
-                        }
-                        .font(.custom("NotoSansKannada-Light", size: 16))
-                        
-                        
-                        
-                    }
-                    
-                    //MARK: Info button
-                    HStack{
-                        Spacer()
-                        Button(action: {
-                                        isInfoPopupVisible = true
-                                    }) {
-                                        Image(systemName: "info.circle")
-                                            .imageScale(.large)
-                                            .font(.custom("NotoSansKannada-Light", size: 16))
+                            VStack(alignment: .leading, spacing: geometry.size.height * 0.015) {
+                                Text("Articles")
+                                    .font(.custom("NotoSansKannada-Bold", size: geometry.size.width * 0.1))
+                                    .offset(x: -geometry.size.width * 0.05, y: geometry.size.height * 0.01)
+                                
+                                ScrollView {
+                                    ForEach(model.articles) { article in
+                                        ArticleButton(articleName: article.articleName, articleURL: article.articleURL)
                                     }
                                 }
-                    .foregroundColor(.blue)
-                    .offset(y: -55)
-                    .padding(.trailing, 20)
-                    .sheet(isPresented: $isInfoPopupVisible) {
-                                InfoPopupView(isInfoPopupVisible: $isInfoPopupVisible)
+                                .frame(height: geometry.size.height*0.22)
+                                .offset(x: geometry.size.width * -0.02)
                             }
-                    
+                            .padding(.leading)
+                        }
+                        .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.04))
+                        
+                        //MARK: Info button
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                isInfoPopupVisible = true
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .imageScale(.large)
+                                    .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.04))
+                            }
+                            .offset(y: geometry.size.height * -0.055)
+                        }
+                        .foregroundColor(.blue)
+                        .padding(.trailing, geometry.size.width * 0.03)
+                        .sheet(isPresented: $isInfoPopupVisible) {
+                            InfoPopupView(isInfoPopupVisible: $isInfoPopupVisible)
+                        }
+                        
                     }
-                  
-                
-                
-
-                
-            
-        }
-        
-        
-        
-    }
-}
-    init() {
-        for familyName in UIFont.familyNames {
-            print(familyName)
-            for fontName in UIFont.fontNames(forFamilyName: familyName) {
-                print("-- \(fontName)")
+                    .padding(.trailing, 1)
+                }
             }
         }
     }
