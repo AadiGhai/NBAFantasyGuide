@@ -32,7 +32,8 @@ struct PlayerDetailView: View {
     @EnvironmentObject var model:DataModel
     var player:Player
     var body: some View {
-        var detailElements = ["Points: \(String(player.pts))",
+        var detailElements = ["Fantasy Points: \(MyTeamCalulations.fantasyPoints(player))",
+                              "Points: \(String(player.pts))",
                               "Rebounds: \(String(player.trb))",
                               "Assists: \(String(player.ast))",
                               "Field Goals Made: \(String(player.fg))",
@@ -82,9 +83,10 @@ struct PlayerDetailView: View {
                                         .padding(.vertical, 10) // Add vertical spacing between the text elements
                                 }
                                 if player.isRookie == false {
+
                                     ZStack(alignment: .topLeading) {
                                         Color.blue.opacity(0.2)
-                                        Text("Predicted Fantasy Point Increase: \(MyTeamCalulations.fantasyPointIncrease(player))")
+                                        Text("Predicted Fantasy Point % Change: \(MyTeamCalulations.fantasyPointIncrease(player))")
                                             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
                                             .padding(.vertical, 10) // Add vertical spacing between the text elements
                                     }
@@ -105,7 +107,7 @@ struct PlayerDetailView: View {
                                     if player.college != nil {
                                         ZStack(alignment: .topLeading) {
                                             Color.blue.opacity(0.2)
-                                            Text("From \(player.college!)")
+                                            Text("From: \(player.college!)")
                                                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
                                                 .padding(.vertical, 10) // Add vertical spacing between the text elements
                                         }
@@ -121,9 +123,11 @@ struct PlayerDetailView: View {
                             Spacer()
                             Spacer()
                             Spacer()
+
                             Divider()
                             Text("Per-Game Stats from the 2022-2023 Season:")
                                 .font(.custom("NotoSansKannada-Bold", size: 20))
+
                             ForEach(detailElements.indices, id: \.self) { index in
                                 CustomRowView(detail: detailElements[index], index: index)
                                     .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -151,6 +155,10 @@ struct PlayerDetailView: View {
                                     }
                                     
                                 }
+                            }
+                            Group{
+                                Spacer()
+                                Spacer()
                             }
                         }
                          

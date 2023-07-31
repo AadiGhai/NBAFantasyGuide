@@ -24,20 +24,20 @@ struct RookiePlayerList: View {
                                 Text(String(player.rk))
                                     .frame(width: 50, alignment: .trailing)
                                 .padding()
-                                .offset(x: -5)
+                                .offset(x: 2)
                             }
                             NavigationLink {
                                 PlayerDetailView(player: player)
                             } label: {
                                 Text(player.name)
                                     .frame(width: 195, alignment: .leading)
-                                    .offset(x: -5)
+                                    .offset(x: -3)
 
                             }
                             
                             Text(player.pos)
                                 .frame(width: 50)
-                                .offset(x: 5)
+                                .offset(x: -10)
 
                             if (!model.myPlayers.contains(where: { myPlayer in
                                 myPlayer.id == player.id
@@ -76,7 +76,7 @@ struct RookiePlayerList: View {
                                 .padding(.leading)
                                 .foregroundColor(.black)
                                 .frame(width: 60)
-                                .offset(x: 5)
+                                .offset(x: 0)
 
                             }
                             

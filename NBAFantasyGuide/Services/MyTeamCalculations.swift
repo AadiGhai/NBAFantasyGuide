@@ -50,44 +50,61 @@ class MyTeamCalulations {
         }
         return String(format: "%.2f", sum)
     }
-    static func fantasyPoints(_ players:[Player]) ->String {
+    static func fantasyPoints(_ player: Player) -> String {
+        let points = player.pts
+        let rebounds = player.trb * 1.2
+        let assists = player.ast * 1.5
+        let steals = player.stl * 3
+        let blocks = player.blk * 3
+        let turnovers = player.tov
+        let games = player.g
+        
+        let sum = points + rebounds + assists + steals + blocks + turnovers
+        let total = sum * Double(games)
+        
+        return String(format: "%.0f", total)
+    }
+    static func totalFantasyPoints(_ players: [Player]) -> String {
         var sum = 0.0
+        
         for player in players {
-            sum += player.pts + (1.2)*(player.trb) + (1.5)*(player.ast) + (3)*(player.stl) + (3)*(player.blk) + (-1)*(player.tov)
+            sum += Double(MyTeamCalulations.fantasyPoints(player))!
         }
+        
         return String(format: "%.2f", sum)
     }
+
     static func fantasyPointIncrease(_ player: Player) -> String {
             // Intermediate variables to store sub-expression results
             let pointsFactor = 1 * player.pts
             let personalFoulsFactor = -0.7 * player.pf
             let turnoversFactor = -1.0 * player.tov
-            let blocksFactor = 1.3 * player.blk
-            let stealsFactor = 1.5 * player.stl
-            let assistsFactor = 1.2 * player.ast
-            let totalReboundsFactor = 1.1 * player.trb
+        let blocksFactor = 0.8 * player.blk
+        let stealsFactor = 0.9 * player.stl
+        let assistsFactor = 0.99 * player.ast
+        let totalReboundsFactor = 0.4 * player.trb
             let defensiveReboundsFactor = 0.6 * player.drb
             let offensiveReboundsFactor = 0.8 * player.orb
-            let freeThrowPercentageFactor = 1.5 * player.ftp
+        let freeThrowPercentageFactor = 2 * player.ftp
             let freeThrowsAttemptedFactor = -0.2 * player.fta
             let freeThrowsMadeFactor = 0.25 * player.ft
-            let effectiveFieldGoalPercentageFactor = 5 * player.efgp
-            let twoPointPercentageFactor = 2 * player.twpp
+            let effectiveFieldGoalPercentageFactor = 1 * player.efgp
+        let twoPointPercentageFactor = 0.8 * player.twpp
             let twoPointersAttemptedFactor = -0.07 * player.twpa
             let twoPointersMadeFactor = 0.2 * player.twp
-            let threePointPercentageFactor = 4 * player.thpp
+        let threePointPercentageFactor = 0.5 * player.thpp
             let threePointersAttemptedFactor = -0.05 * player.thpa
-            let threePointersMadeFactor = 1.6 * player.thp
-            let fieldGoalPercentageFactor = 5 * player.fgp
+        let threePointersMadeFactor = 0.9 * player.thp
+        let fieldGoalPercentageFactor = 3 * player.fgp
             let fieldGoalsAttemptedFactor = -0.3 * player.fga
             let fieldGoalsMadeFactor = 0.7 * player.fg
-            let minutesPlayedFactor = -1.05 * player.mp
-            let gamesStartedFactor = -0.2 * Double(player.gs)
-            let gamesPlayedFactor = -0.1 * Double(player.g)
-            let ageFactor = -0.2 * Double(player.age)
+            let minutesPlayedFactor = -0.35 * player.mp
+        let gamesStartedFactor = -0.5 * Double(player.gs)
+            let gamesPlayedFactor = 0.2 * Double(player.g)
+            let ageFactor = -0.9 * Double(player.age)
             
             // Calculate the sum of all factors
-            let sum = 10.0 + pointsFactor + personalFoulsFactor + turnoversFactor + blocksFactor + stealsFactor + assistsFactor
+            let sum =  14 + pointsFactor + personalFoulsFactor + turnoversFactor + blocksFactor + stealsFactor + assistsFactor
                     + totalReboundsFactor + defensiveReboundsFactor + offensiveReboundsFactor + freeThrowPercentageFactor
                     + freeThrowsAttemptedFactor + freeThrowsMadeFactor + effectiveFieldGoalPercentageFactor
                     + twoPointPercentageFactor + twoPointersAttemptedFactor + twoPointersMadeFactor

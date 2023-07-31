@@ -17,9 +17,9 @@ class DataModel:ObservableObject{
     @Published var articles = [Article]()
     @Published var num = 1
     @Published var tabSelectedIndex = 1
-let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers", "PFP Increase"]
+let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers", "Fantasy Points", "PFP % Change"]
     let position = ["All", "PG", "SG", "SF", "PF", "C"]
-    let team = ["All", "ATL", "BRK", "BOS", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHO", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
+    let team = ["All", "TOT", "ATL", "BRK", "BOS", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHO", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
     init(){
         //create an instance of data service and get the data
         checkLoadedData()
@@ -182,8 +182,8 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
             return playerObjects
         }
     
-    func sort (_ pos:String, _ tm:String, _ stat:String)->[Player] {
-        var modifiedPlayers = players
+    func sort (_ specificPlayers:[Player], _ pos:String, _ tm:String, _ stat:String)->[Player] {
+        var modifiedPlayers = specificPlayers
         if pos != "All" {
             modifiedPlayers.removeAll { player in
                 player.pos != pos
@@ -224,7 +224,13 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
                 $0.tov > $1.tov
             }
         }
-        if stat == "PFP Increase" {
+        if stat == "Fantasy Points" {
+            modifiedPlayers = modifiedPlayers.sorted {
+                Double(MyTeamCalulations.fantasyPoints($0))! > Double(MyTeamCalulations.fantasyPoints($1))!
+            }
+        }
+
+        if stat == "PFP % Change" {
             modifiedPlayers = modifiedPlayers.sorted {
                 Double(MyTeamCalulations.fantasyPointIncrease($0))! > Double(MyTeamCalulations.fantasyPointIncrease($1))!
             }

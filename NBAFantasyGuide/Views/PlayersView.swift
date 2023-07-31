@@ -29,6 +29,7 @@ struct PlayersView: View {
                     .pickerStyle(.segmented)
                     .frame(width: 400)
                     HStack(spacing: 10.0){
+                        Spacer()
                         VStack{
                             Picker("Position", selection: $selectionPos) {
                                 ForEach(model.position, id: \.self) {
@@ -36,10 +37,14 @@ struct PlayersView: View {
                                 }
                             }
                             .frame(width: 70)
+                            .padding(.leading)
                             Text("Position")
-                                .font(.custom("NotoSansKannada-Bold", size: 15))
+                                .font(.custom("NotoSansKannada-Bold", size: 14))
 
                         }
+                        .font(.custom("NotoSansKannada-Bold", size: 14))
+
+                        
                        
                         VStack {
                             Picker("Team", selection: $selectionTeam) {
@@ -49,7 +54,7 @@ struct PlayersView: View {
                             }
                             .frame(width: 85)
                             Text("Team")
-                                .font(.custom("NotoSansKannada-Bold", size: 15))
+                                .font(.custom("NotoSansKannada-Bold", size: 14))
                                 .padding(.trailing, 5)
 
                         }
@@ -63,7 +68,7 @@ struct PlayersView: View {
                                 .frame(width: 120)
                                 
                                 Text("Statistic")
-                                    .font(.custom("NotoSansKannada-Bold", size: 15))
+                                    .font(.custom("NotoSansKannada-Bold", size: 14))
                                     .padding(.trailing, 5)
                                 
                                 
@@ -79,7 +84,7 @@ struct PlayersView: View {
                             } label: {
                                 ZStack{
                                     BackgroundRectangle(opacity: 0.7)
-                                        .frame(width: 120, height: 40, alignment: .center)
+                                        .frame(width: 80, height: 40, alignment: .center)
                                         .cornerRadius(20)
                                     Text("Add Hidden")
                                         .bold()
@@ -87,11 +92,11 @@ struct PlayersView: View {
                             }
                             .padding(.trailing, 10)
                         }
-
+Spacer()
                     }
                     .pickerStyle(.menu)
                     .accentColor(.black)
-                    .font(.custom("NotoSansKannada-SemiBold", size: 18))
+                    .font(.custom("NotoSansKannada-SemiBold", size: 13))
                     .frame(width: 1000)
                  
                  
@@ -121,11 +126,13 @@ struct PlayersView: View {
                     .padding(.trailing, 65)
                     .font(.custom("NotoSansKannada-SemiBold", size: 18))
                     Divider()
+                    let nonRookies = model.players.filter({!$0.isRookie})
+                    let rookies = model.players.filter({$0.isRookie})
                     if selectionPlayer == "Players"{
-                        PlayerList(stat: model.sort(selectionPos, selectionTeam, selectionStat), statShown: true, selectedStat: selectionStat, isHidden: true, isMyPlayer: false, isLabel: true)
+                        PlayerList(stat: model.sort(nonRookies, selectionPos, selectionTeam, selectionStat), statShown: true, selectedStat: selectionStat, isHidden: true, isMyPlayer: false, isLabel: true)
                     }
                     else {
-                        RookiePlayerList(players: model.sort(selectionPos, selectionTeam, "None"), isHidden: true, isLabel: true)
+                        RookiePlayerList(players: model.sort(rookies, selectionPos, selectionTeam, "None"), isHidden: true, isLabel: true)
                     }
                 
                 }
