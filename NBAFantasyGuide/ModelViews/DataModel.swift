@@ -15,6 +15,7 @@ class DataModel:ObservableObject{
     @Published var hiddenPlayers = [Player]()
     @Published var allPlayers = [Player]()
     @Published var articles = [Article]()
+    @Published var savedTeams = [SavedTeam]()
     @Published var num = 1
     @Published var tabSelectedIndex = 1
     @Published var isInfoPopupVisible = false
@@ -39,6 +40,7 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
             fetchData()
             fetchMyPlayers()
             fetchArticles()
+            fetchSavedTeams()
         }
     }
     func preloadLocalData() {
@@ -147,6 +149,15 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
             }
         }
     
+    func removeAllMyPlayer() {
+                myPlayers.removeAll()
+                do {
+                    try managedObjectContext.save()
+                } catch {
+                    print("Error removing MyPlayer from Core Data: \(error)")
+                }
+            }
+    
     func fetchMyPlayers() {
            let fetchRequest: NSFetchRequest<MyPlayers> = NSFetchRequest(entityName: "MyPlayers")
            
@@ -171,10 +182,10 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
             }
         }
     
-    func getMyPlayerObjects() -> [Player] {
+    func getMyPlayerObjects(mp:[MyPlayers]) -> [Player] {
             var playerObjects = [Player]()
             
-            for myPlayer in myPlayers {
+            for myPlayer in mp {
                 if let playerUUID = myPlayer.id {
                     if let player = getPlayerByUUID(playerUUID) {
                         playerObjects.append(player)
@@ -277,6 +288,54 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
                 print("Error removing Article from Core Data: \(error)")
             }
         }
+    }
+    func saveTeam(withMyPlayers myPlayers: [MyPlayers]) {
+        let newTeam = SavedTeam(context: managedObjectContext)
+        
+        // Associate the MyPlayer instances with the SavedTeam object
+        newTeam.uuids = NSSet(array: myPlayers)
+        
+        savedTeams.append(newTeam)
+        
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving SavedTeam to Core Data: \(error)")
+        }
+    }
+
+    // Remove a SavedTeam
+    func removeTeam(_ team: SavedTeam) {
+        if let index = savedTeams.firstIndex(of: team) {
+            savedTeams.remove(at: index)
+            managedObjectContext.delete(team)
+            
+            do {
+                try managedObjectContext.save()
+            } catch {
+                print("Error removing SavedTeam from Core Data: \(error)")
+            }
+        }
+    }
+
+    // Fetch all SavedTeams
+    func fetchSavedTeams() {
+        savedTeams.removeAll()
+        let fetchRequest: NSFetchRequest<SavedTeam> = NSFetchRequest(entityName: "SavedTeam")
+        
+        do {
+            savedTeams = try managedObjectContext.fetch(fetchRequest)
+        } catch {
+            print("Failed to fetch SavedTeams from Core Data: \(error)")
+        }
+    }
+
+    // Get MyPlayers for a specific SavedTeam
+    func getMyPlayers(forSavedTeam savedTeam: SavedTeam) -> [MyPlayers] {
+        if let myPlayers = savedTeam.uuids {
+            return Array(myPlayers) as? [MyPlayers] ?? []
+        }
+        return []
     }
     
 }

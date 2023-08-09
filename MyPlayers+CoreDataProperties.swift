@@ -2,7 +2,7 @@
 //  MyPlayers+CoreDataProperties.swift
 //  NBAFantasyGuide
 //
-//  Created by Aadi Ghai on 7/20/23.
+//  Created by Aadi Ghai on 8/8/23.
 //
 //
 
@@ -17,6 +17,7 @@ extension MyPlayers {
     }
 
     @NSManaged public var id: UUID?
+    @NSManaged public var uuids: SavedTeam?
 
 }
 

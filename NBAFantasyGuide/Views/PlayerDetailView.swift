@@ -32,7 +32,7 @@ struct PlayerDetailView: View {
     @EnvironmentObject var model:DataModel
     var player:Player
     var body: some View {
-        var detailElements = ["Fantasy Points: \(MyTeamCalulations.fantasyPoints(player))",
+        let detailElements = ["Fantasy Points: \(MyTeamCalulations.fantasyPoints(player))",
                               "Points: \(String(player.pts))",
                               "Rebounds: \(String(player.trb))",
                               "Assists: \(String(player.ast))",

@@ -57,12 +57,28 @@ struct HomeView: View {
                 ZStack {
                     BackgroundRectangle(opacity: 0.7)
                         .ignoresSafeArea()
-                    
-                    VStack(spacing: geometry.size.height * 0.03) {
-                        Spacer()
-                        
+         
+
+                    VStack(spacing: geometry.size.height * 0.018) {
+                        NavigationLink {
+                            SavedTeamsView()
+
+                        } label: {
+                            HStack{
+                                ZStack{
+                                    BackgroundRectangle(opacity: 0.3)
+                                        .frame(width: geometry.size.width * 0.5, height: geometry.size.height * 0.05)                                    .cornerRadius(20)
+                                    Text("View Saved Teams")
+                                        .font(.custom("NotoSansKannada-Bold", size: geometry.size.width * 0.05))
+                                        .accentColor(.black)
+                                }
+                                Spacer()
+                            }
+                            .padding(.leading, geometry.size.width * 0.25)
+                        }
+                       
                         //MARK: my team card
-                        NavigationLink(destination: MyTeamView()) {
+                        NavigationLink(destination: MyTeamView(team: model.myPlayers, isSaved: false)) {
                             ZStack {
                                 BackgroundRectangle(opacity: 0.3)
                                     .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.5)
@@ -82,21 +98,21 @@ struct HomeView: View {
                                     Text("Team Averages (from 2022-2023 Season): ")
                                         .padding(.bottom)
                                         .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.035))
-                                    Text("Player Count: \(model.getMyPlayerObjects().count)")
+                                    Text("Player Count: \(model.getMyPlayerObjects(mp: model.myPlayers).count)")
                                         .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.035))
-                                    Text("Points: \(MyTeamCalulations.totalPoints(model.getMyPlayerObjects()))")
+                                    Text("Points: \(MyTeamCalulations.totalPoints(model.getMyPlayerObjects(mp: model.myPlayers)))")
                                         .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.035))
-                                    Text("Rebounds: \(MyTeamCalulations.totalRebounds(model.getMyPlayerObjects()))")
+                                    Text("Rebounds: \(MyTeamCalulations.totalRebounds(model.getMyPlayerObjects(mp: model.myPlayers)))")
                                         .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.035))
-                                    Text("Assists: \(MyTeamCalulations.totalAssists(model.getMyPlayerObjects()))")
+                                    Text("Assists: \(MyTeamCalulations.totalAssists(model.getMyPlayerObjects(mp: model.myPlayers)))")
                                         .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.035))
-                                    Text("Steals: \(MyTeamCalulations.totalSteals(model.getMyPlayerObjects()))")
+                                    Text("Steals: \(MyTeamCalulations.totalSteals(model.getMyPlayerObjects(mp: model.myPlayers)))")
                                         .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.035))
-                                    Text("Blocks: \(MyTeamCalulations.totalBlocks(model.getMyPlayerObjects()))")
+                                    Text("Blocks: \(MyTeamCalulations.totalBlocks(model.getMyPlayerObjects(mp: model.myPlayers)))")
                                         .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.035))
-                                    Text("Turnovers: \(MyTeamCalulations.totalTurnovers(model.getMyPlayerObjects()))")
+                                    Text("Turnovers: \(MyTeamCalulations.totalTurnovers(model.getMyPlayerObjects(mp: model.myPlayers)))")
                                         .font(.custom("NotoSansKannada-Light", size: geometry.size.width * 0.035))
-                                    Text("Total Fantasy Points: \(MyTeamCalulations.totalFantasyPoints(model.getMyPlayerObjects()))")
+                                    Text("Total Fantasy Points: \(MyTeamCalulations.totalFantasyPoints(model.getMyPlayerObjects(mp: model.myPlayers)))")
                                         .font(.custom("NotoSansKannada-Bold", size: geometry.size.width * 0.035))
                                 }
                                 .padding(.leading)
