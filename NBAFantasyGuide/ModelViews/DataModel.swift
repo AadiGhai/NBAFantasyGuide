@@ -17,6 +17,8 @@ class DataModel:ObservableObject{
     @Published var articles = [Article]()
     @Published var num = 1
     @Published var tabSelectedIndex = 1
+    @Published var isInfoPopupVisible = false
+
 let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers", "Fantasy Points", "PFP % Change"]
     let position = ["All", "PG", "SG", "SF", "PF", "C"]
     let team = ["All", "TOT", "ATL", "BRK", "BOS", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHO", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
@@ -31,6 +33,7 @@ let statistic = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers
         let status = UserDefaults.standard.bool(forKey: Constants.isDataPreloaded)
         if status == false {
             preloadLocalData()
+            isInfoPopupVisible = true
         }
         else {
             fetchData()

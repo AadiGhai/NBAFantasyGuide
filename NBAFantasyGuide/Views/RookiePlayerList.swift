@@ -13,6 +13,7 @@ struct RookiePlayerList: View {
     var isLabel:Bool
     var body: some View {
         ScrollView{
+            LazyVStack{
             ForEach(players.sorted { $0.rk < $1.rk }) { player in
                 if player.isRookie == true {
                     ZStack {
@@ -23,8 +24,8 @@ struct RookiePlayerList: View {
                             if isLabel{
                                 Text(String(player.rk))
                                     .frame(width: 50, alignment: .trailing)
-                                .padding()
-                                .offset(x: 2)
+                                    .padding()
+                                    .offset(x: 2)
                             }
                             NavigationLink {
                                 PlayerDetailView(player: player)
@@ -32,13 +33,13 @@ struct RookiePlayerList: View {
                                 Text(player.name)
                                     .frame(width: 195, alignment: .leading)
                                     .offset(x: -3)
-
+                                
                             }
                             
                             Text(player.pos)
                                 .frame(width: 50)
                                 .offset(x: -10)
-
+                            
                             if (!model.myPlayers.contains(where: { myPlayer in
                                 myPlayer.id == player.id
                             }))
@@ -49,7 +50,7 @@ struct RookiePlayerList: View {
                                 .foregroundColor(.black)
                                 .frame(width: 20)
                                 .offset(x: 5)
-
+                                
                             }
                             
                             else {
@@ -61,7 +62,7 @@ struct RookiePlayerList: View {
                                 .foregroundColor(.black)
                                 .frame(width: 20)
                                 .offset(x: 5)
-
+                                
                                 
                             }
                             if isHidden {
@@ -77,7 +78,7 @@ struct RookiePlayerList: View {
                                 .foregroundColor(.black)
                                 .frame(width: 60)
                                 .offset(x: 0)
-
+                                
                             }
                             
                         }
@@ -90,6 +91,7 @@ struct RookiePlayerList: View {
                 
                 
             }
+        }
                     }
                     
                     

@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 class DataService{
     static func getLocalData()->[PlayerJSON]{
-
+        
         //Parse local json file
         
         //get url path to json file
@@ -32,6 +32,7 @@ class DataService{
             do{
                 var playerData = try decoder.decode([PlayerJSON].self, from: data)
                 for index in 0..<playerData.count {
+                    //add unique ids
                     playerData[index].id = UUID()
                     if playerData[index].isRookie == nil {
                         playerData[index].isRookie = false
@@ -42,9 +43,6 @@ class DataService{
             catch{
                 print(error)
             }
-            //add unique ids
-            
-            //return recipes
         }
         catch{
             print(error)
@@ -53,9 +51,6 @@ class DataService{
         
     }
     static func getArticleData()->[ArticleJSON]{
-
-        //Parse local json file
-        
         //get url path to json file
         let pathString = Bundle.main.path(forResource: "articledata", ofType: "json")
         
@@ -67,15 +62,13 @@ class DataService{
         let url = URL(fileURLWithPath: pathString!)
         do {
             //create data object
-            
             let data = try Data(contentsOf: url)
-            
             //decode data with JSON decoder
             let decoder = JSONDecoder()
-            
             do{
                 var articleData = try decoder.decode([ArticleJSON].self, from: data)
                 for index in 0..<articleData.count {
+                    //add unique ids
                     articleData[index].id = UUID()
                 }
                 return articleData
@@ -83,9 +76,6 @@ class DataService{
             catch{
                 print(error)
             }
-            //add unique ids
-            
-            //return recipes
         }
         catch{
             print(error)
@@ -93,6 +83,6 @@ class DataService{
         return [ArticleJSON]()
         
     }
-
+    
     
 }

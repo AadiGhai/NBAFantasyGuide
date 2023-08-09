@@ -51,8 +51,6 @@ struct InfoPopupView: View {
 
 struct HomeView: View {
     @EnvironmentObject var model: DataModel
-    @State private var isInfoPopupVisible = false
-    
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -134,7 +132,7 @@ struct HomeView: View {
                         HStack {
                             Spacer()
                             Button(action: {
-                                isInfoPopupVisible = true
+                                model.isInfoPopupVisible = true
                             }) {
                                 Image(systemName: "info.circle")
                                     .imageScale(.large)
@@ -144,8 +142,8 @@ struct HomeView: View {
                         }
                         .foregroundColor(.blue)
                         .padding(.trailing, geometry.size.width * 0.03)
-                        .sheet(isPresented: $isInfoPopupVisible) {
-                            InfoPopupView(isInfoPopupVisible: $isInfoPopupVisible)
+                        .sheet(isPresented: $model.isInfoPopupVisible) {
+                            InfoPopupView(isInfoPopupVisible: $model.isInfoPopupVisible)
                         }
                         
                     }

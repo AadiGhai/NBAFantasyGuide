@@ -102,9 +102,16 @@ Spacer()
                  
                     //MARK: labels
                     HStack(spacing: 0){
+                        if selectionPlayer == "Players"{
                         Text("Rk")
                             .padding(.leading, 50)
                             .frame(width: 80)
+                    }
+                        else {
+                            Text("Pk")
+                                .padding(.leading, 50)
+                                .frame(width: 80)
+                        }
 
                         Text("Name")
                             .padding(.trailing, 100.0)
